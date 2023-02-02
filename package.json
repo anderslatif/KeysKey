@@ -1,0 +1,32 @@
+{
+  "name": "keyskey",
+  "version": "0.0.1",
+  "description": "A keyboard key shortcut manager without fuss.",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anderslatif/KeysKey.git"
+  },
+  "keywords": [
+    "shortcuts",
+    "keyboard",
+    "keys"
+  ],
+  "author": "Anders Latif",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anderslatif/KeysKey/issues"
+  },
+  "homepage": "https://github.com/anderslatif/KeysKey#readme",
+  "devDependencies": {
+    "typescript": "^4.9.5"
+  }
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        body.addEventListener('click', (event) => {
+
+            KeysKeys.is(event, [KeysKeys.Number.One, KeysKeys.Number.Two, KeysKeys.Number.Three]);
+          
+            KeysKeys.is(event, [Keyskeys.Group(KeysKeys.SpecialKeys.Meta, KeysKeys.Letter.A)]);
+
+            KeysKeys.is(event, [KeysKeys.Group(KeysKeys.SpecialGroups.MetaAndShift, KeysKeys.Letter.A), 
+                            KeysKeys.Group(KeysKeys.SpecialGroups.MetaOrControl, KeysKeys.Letter.B)]);
+                            
+        });
+
+
+    </script>
+</body>
+</html>
