@@ -8,17 +8,21 @@
 </head>
 <body>
 
+    <script src="./ChatGPT.js"></script>
+
     <script>
-        body.addEventListener('click', (event) => {
-
-            KeysKeys.is(event, [KeysKeys.Number.One, KeysKeys.Number.Two, KeysKeys.Number.Three]);
+        document.addEventListener('click', (event) => {
+            
+            KeysKey.is(event, [KeysKey.Number.One, KeysKey.Number.Two, KeysKey.Number.Three]);
           
-            KeysKeys.is(event, [Keyskeys.Group(KeysKeys.SpecialKeys.Meta, KeysKeys.Letter.A)]);
+            KeysKey.is(event, [KeysKey.Group(KeysKey.SpecialKeys.Meta, KeysKey.Letter.A)]);
 
-            KeysKeys.is(event, [KeysKeys.Group(KeysKeys.SpecialGroups.MetaAndShift, KeysKeys.Letter.A), 
-                            KeysKeys.Group(KeysKeys.SpecialGroups.MetaOrControl, KeysKeys.Letter.B)]);
-                            
+            KeysKey.is(event, [KeysKey.Group(KeysKey.SpecialGroups.MetaAndShift, KeysKey.Letter.A), 
+                            KeysKey.Group(KeysKey.SpecialGroups.MetaOrControl, KeysKey.Letter.B)]);
         });
+
+
+
 
 
     </script>

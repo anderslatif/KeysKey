@@ -1,6 +1,9 @@
-[![KeysKey Logo](./KeysKeyLogo.png)](https://github.com/anderslatif/KeysKey/)
+[![KeysKey Logo](https://github.com/anderslatif/KeysKey/blob/main/KeysKeyLogo.png)](https://github.com/anderslatif/KeysKey/)
 
 # KeysKey
+
+Provides the key to your keys.
+
 OS agnostic Keyboard mappings without the usual quirks.
 
 ## Motivation
