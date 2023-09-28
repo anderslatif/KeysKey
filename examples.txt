@@ -1,0 +1,48 @@
+Always return empty string if the event doesn't contain the key
+
+# Single Key events
+
+KeysKey.is(event, [KeysKey.Number.One]);
+// returns 1 if the key is pressed 
+
+KeysKey.is(event, [KeysKey.Number.AllNumbers]);
+// returns any number from 0 to 9 if the key is pressed
+
+KeysKey.is(event, [KeysKey.Letter.a]);
+// returns A if a + shift or CAPS LOCK is pressed
+
+KeysKey.is(event, [KeysKey.Letter.A]);
+// returns A if a + shift or CAPS LOCK is pressed
+
+KeysKey.is(event, [KeysKey.Letter.AToZ]);
+// returns only uppercase letters
+
+KeysKey.is(event, [KeysKey.Letter.atoz]);
+// returns only lowercase letters
+
+KeysKey.is(event, [KeysKey.Letter.AllLetters]);
+// returns both uppercase and lowercase letters from A to z if the key is pressed
+
+KeysKey.is(event, [KeysKey.SpecialCharacters.QuestionMark]);
+// returns a question mark if such a key is pressed
+
+KeysKey.is(event, [KeysKey.SpecialCharacters.AllSpecialCharacters]);
+// returns all special characters if such a key is pressed
+
+KeysKeys.is(event, [KeysKey.AllKeys.TypeableKeys]);
+// returns all typeable keys if such a key is pressed (letters, numbers, special characters)
+
+KeysKey.is(event, [KeysKey.AllKeys.AllKeys]);
+// returns all keys if such a key is pressed (letters, numbers, special characters, arrows, escape, ctrl, meta, etc.)
+
+# Groupped Key events
+
+KeysKey.is(event, [KeysKey.Group(KeysKey.Letter.A, KeysKey.Letter.B)]);
+// returns an array of ["A", "B"] if both a + b have been pressed
+
+// KeysKey.is(event, [KeysKey.Group(KeysKey.SpecialKeys.Meta, KeysKey.Letter.A)]);
+// returns an array of ["Meta", "A"] if both meta + a have been pressed
+
+// KeysKey.is(event, [KeysKey.Group(KeysKey.SpecialGroups.MetaAndShift, KeysKey.Letter.A), 
+//                 KeysKey.Group(KeysKey.SpecialGroups.MetaOrControl, KeysKey.Letter.B)]);
+// returns an array of ["Meta", "Shift" "A"] or ["Meta", "B"] or ["Meta", "Ctrl", "B"] if either of those combinations have been pressed
