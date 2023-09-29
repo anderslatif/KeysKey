@@ -1,3 +1,8 @@
+import keyEnums from "./keyEnums.js";
+const { SpecialKeys, NumberKeys } = keyEnums;
+
+const verboseMode = true;
+
 type KeyEvent = {
   key: string;
   metaKey: boolean;
@@ -5,12 +10,21 @@ type KeyEvent = {
   ctrlKey: boolean;
 };
 
-type KeyGroup = {
-  type: "AND" | "OR",
-  keys: (string | KeyGroup)[]
-}
+const checkSpecialKey = (key: string, event: KeyEvent) => {
+  if (key === "Meta" && event.metaKey) return "Meta";
+  if (key === "Shift" && event.shiftKey) return "Shift";
+  if (key === "Control" && event.ctrlKey) return "Control";
+  return null;
+};
+
+const checkCharKey = (key: string, event: KeyEvent) => {
+  if (event.key === key) return key;
+  return null;
+};
+
 
 class KeysKey {
+
   static Number = {
     Zero: '0',
     One: '1',
@@ -56,61 +70,98 @@ class KeysKey {
   static SpecialKeys = {
     Meta: 'Meta',
     Shift: 'Shift',
-    // ... more special keys if required
+    Control: 'Ctrl',
   };
 
   static SpecialGroups = {
-    MetaAndShift: (event: KeyEvent) => event.metaKey && event.shiftKey,
-    MetaOrControl: (event: KeyEvent) => event.metaKey || event.ctrlKey,
-    // ... more special groups if required
+    MetaAndShift: (event: KeyEvent) => event.metaKey && event.shiftKey ? ["Meta", "Shift"] : null,
+    MetaOrShift: (event: KeyEvent) => event.metaKey || event.shiftKey ? ["Meta", "Shift"] : null,
+    MetaAndControl: (event: KeyEvent) => event.metaKey && event.ctrlKey ? ["Meta", "Control"] : null,
+    MetaOrControl: (event: KeyEvent) => event.metaKey || event.ctrlKey ? ["Meta", "Control"] : null,
+    ControlAndShift: (event: KeyEvent) => event.ctrlKey && event.shiftKey ? ["Control", "Shift"] : null,
+    ControlOrShift: (event: KeyEvent) => event.ctrlKey || event.shiftKey ? ["Control", "Shift"] : null,
   };
 
-  static is(event: KeyEvent, keys: Array<string | KeyGroup>): string | string[] {
-    let results: string[] = [];
+  static is(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] | null {
+    if (!Array.isArray(keys)) throw new Error(`The second argument (keys) must be an array of strings or KeysKey constants.`);
+
+    let matchingKeys: KeysKey[] = [];
+
+    for (const keyGroup of keys) {
+
+      if (Array.isArray(keyGroup)) { 
+        matchingKeys = this.And(event, ...keyGroup);
+      } 
+
+      return matchingKeys.length === keys.length ? matchingKeys : null;
+    }
+  }
+
+
+  static And(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] | null {
+    const matchedKeys = this.matchEventWithKeys(event, ...keys);
     
-    const checkKey = (key: string | KeyGroup): string | string[] | null => {
-      if (typeof key === 'string') {
-          if (key === 'Meta' && event.metaKey) return key;
-          if (key === 'Shift' && event.shiftKey) return key;
-          if (key === 'Control' && event.ctrlKey) return key;
-          if (event.key === key) return key;
-          return null;
-      } else if (key.type === 'AND') {
-          const andKeys = key.keys.map(checkKey).filter(k => k !== null);
-          return andKeys.length === key.keys.length ? andKeys.flat() : null;
-      } else if (key.type === 'OR') {
-          for (const k of key.keys) {
-              const orKey = checkKey(k);
-              if (orKey !== null) return orKey;
-          }
+    const same = matchedKeys.length === keys.length;
+    
+    return same ? matchedKeys : null;
+  }
+  
+  static Or(event: KeyEvent, ...keys:  KeysKey[]): KeysKey[] | null {
+
+    const matchedKeys = this.matchEventWithKeys(event, ...keys);
+    
+    const same = matchedKeys.length === keys.length;
+    const includesIn = keys.map(key => matchedKeys.includes(key)).includes(true);
+    
+    return same || includesIn ? matchedKeys : null;
+  }
+
+  static matchEventWithKeys(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] {
+    const matchedKeys: KeysKey[] = [];
+
+    for (const key of keys) {
+      if (verboseMode && typeof key === "function") {
+        throw new Error("A function was provided. The key must be a string");
       }
-      return null;
-    };
-    
-    for (let key of keys) {
-        if (checkKey(key)) {
-            if (typeof key === 'string') {
-                results.push(key);
-            } else {
-                results.push(...key.keys.filter(k => typeof k === 'string') as string[]);
-            }
+      if (verboseMode) {
+        const unpackedKeys = unpackNestedArrays(keys);
+        if (unpackedKeys.length !== keys.length) {
+          console.log("Warning, keys contains nested arrays. Unpacking only works in verbose mode.");
+          keys = unpackedKeys;
         }
-    }
-    
-    if (results.length === 1) {
-        return results[0];
-    } else if (results.length > 1) {
-        return results;
-    }
-    return '';
-  }
+      }
+         
 
-  static And(...keys: Array<string | KeyGroup>): KeyGroup {
-      return { type: "AND", keys };
-  }
-
-  static Or(...keys: Array<string | KeyGroup>): KeyGroup {
-      return { type: "OR", keys };
+      if (Object.values(KeysKey.Number).includes(key as string) 
+      || Object.values(KeysKey.Letter).includes(key as string)) {
+        if (event.key === key) {
+          matchedKeys.push(key);
+        }
+      } else if (Object.values(KeysKey.SpecialKeys).includes(key as string)) {
+        if (key === "Meta" && event.metaKey) matchedKeys.push(key);
+        if (key === "Shift" && event.shiftKey) matchedKeys.push(key);
+        if (key === "Control" && event.ctrlKey) matchedKeys.push(key);
+      } else if (Object.values(KeysKey.SpecialGroups).includes(key as any)) { 
+        const specialGroup = key as keyof typeof KeysKey.SpecialGroups;
+        const specialGroupResult = KeysKey.SpecialGroups[specialGroup](event);
+        if (specialGroupResult !== null) {
+          matchedKeys.push(...specialGroupResult);
+        }
+      }
+    }
+    return matchedKeys;
   }
 }
 
+function unpackNestedArrays(list: KeysKey[]) {
+  return list.reduce((acc, element) => {
+    if (Array.isArray(element)) {
+      acc.push(...element);
+    } else {
+      acc.push(element);
+    }
+    return acc;
+  }, [] as any);
+}
+
+export default KeysKey;
