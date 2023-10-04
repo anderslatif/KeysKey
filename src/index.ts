@@ -1,4 +1,4 @@
-import { KeyEventEnum as KeyEvent, NumberEnum, LetterEnum, SpecialKeysEnum, SpecialGroupsEnum, SpecialCombosList } from "./enums.js";
+import { KeyEventEnum as KeyEvent, NumberEnum, UppercaseLetterEnum, LowercaseLetterEnum, SpecialKeysEnum, SpecialGroupsEnum, SpecialCombosList } from "./enums.js";
 import { unpackNestedArrays } from "./util.js";
 
 
@@ -9,11 +9,13 @@ import { unpackNestedArrays } from "./util.js";
 class KeysKey {
 
   public static Number: typeof NumberEnum = NumberEnum;
-  public static Letter: typeof LetterEnum = LetterEnum;
+  public static UppercaseLetter: typeof UppercaseLetterEnum = UppercaseLetterEnum;
+  public static LowercaseLetter: typeof LowercaseLetterEnum = LowercaseLetterEnum;
   public static SpecialKeys: typeof SpecialKeysEnum = SpecialKeysEnum;
   public static SpecialGroups: typeof SpecialGroupsEnum = SpecialGroupsEnum;
 
-  private static debugMode = false;
+  public static debugMode = false;
+  public static optimizedAndMode = false;
 
   /**
    * Creates a new instance of the KeysKey class.
@@ -56,7 +58,7 @@ class KeysKey {
    * @returns {Array<string> | null} - Returns an array of keys that matched the event. If no key matched, returns null.
    */
   public static And(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] | null {
-    const matchedKeys = this.matchEventWithKeys(false, event, keys);
+    const matchedKeys = this.matchEventWithKeys(event, keys);
     
     const same = matchedKeys?.length === keys.length;
     
@@ -70,7 +72,8 @@ class KeysKey {
    * @returns {Array<string> | null} - Returns an array of keys that matched the event. Returns null immediately if one key doesn't match.
    */
   public static OptimizedAnd(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] | null {
-    const matchedKeys = this.matchEventWithKeys(true, event, ...keys);
+    this.optimizedAndMode = true;
+    const matchedKeys = this.matchEventWithKeys(event, ...keys);
 
     const same = matchedKeys?.length === keys.length;
     
@@ -85,7 +88,7 @@ class KeysKey {
    */
   public static Or(event: KeyEvent, ...keys:  KeysKey[]): KeysKey[] | null {
 
-    const matchedKeys = this.matchEventWithKeys(false, event, ...keys);
+    const matchedKeys = this.matchEventWithKeys(event, ...keys);
     
     const isSame = matchedKeys?.length === keys.length;
     const isIncludedIn = keys.map(key => matchedKeys.includes(key)).includes(true);
@@ -96,7 +99,7 @@ class KeysKey {
   /**
    * For internal use by the exposed methods. Checks if a list of keys match the provided event.
    * */
-  private static matchEventWithKeys(optimizedAndMode = false, event: KeyEvent, ...keys: KeysKey[]): KeysKey[] {
+  private static matchEventWithKeys(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] {
     const matchedKeys: KeysKey[] = [];
 
      if (this.debugMode) {
@@ -114,7 +117,7 @@ class KeysKey {
       
       if (Array.isArray(key)) {
         const unpackedKeys = unpackNestedArrays(keys);
-        return this.matchEventWithKeys(optimizedAndMode, event, ...unpackedKeys);
+        return this.matchEventWithKeys(event, ...unpackedKeys);
       }
 
       if (SpecialCombosList.includes(key as string)) {
@@ -131,10 +134,11 @@ class KeysKey {
       }
          
       if (Object.values(KeysKey.Number).includes(key as NumberEnum) 
-      || Object.values(KeysKey.Letter).includes(key as LetterEnum)) {
+      || Object.values(KeysKey.UppercaseLetter).includes(key as UppercaseLetterEnum)
+      || Object.values(KeysKey.LowercaseLetter).includes(key as LowercaseLetterEnum)) {
         if (event.key === key) {
           matchedKeys.push(key);
-        } else if (optimizedAndMode) {
+        } else if (this.optimizedAndMode) {
           return null;
         }
       } else if (Object.values(KeysKey.SpecialKeys).includes(key as SpecialKeysEnum)) {

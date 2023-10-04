@@ -17,7 +17,36 @@ export enum NumberEnum {
   Nine = '9',
 };
 
-export enum LetterEnum {
+export enum LowercaseLetterEnum {
+  a = 'a',
+  b = 'b',
+  c = 'c',
+  d = 'd',
+  e = 'e',
+  f = 'f',
+  g = 'g',
+  h = 'h',
+  i = 'i',
+  j = 'j',
+  k = 'k',
+  l = 'l',
+  m = 'm',
+  n = 'n',
+  o = 'o',
+  p = 'p',
+  q = 'q',
+  r = 'r',
+  s = 's',
+  t = 't',
+  u = 'u',
+  v = 'v',
+  w = 'w',
+  x = 'x',
+  y = 'y',
+  z = 'z',
+}
+
+export enum UppercaseLetterEnum {
   A = 'A',
   B = 'B',
   C = 'C',
@@ -63,6 +92,8 @@ export enum SpecialCombosEnum {
 }
 
 export const SpecialCombosList: Array<string> = [...Object.values(SpecialCombosEnum)];
+
+// todo special groups a-Z A-Z a-z 0-9 
 
 export const SpecialGroupsEnum = {
     MetaAndShift: (event: KeyEventEnum) => event.metaKey && event.shiftKey ? [SpecialCombosEnum.MetaAndShiftCombo, "Meta", "Shift"] : null,
