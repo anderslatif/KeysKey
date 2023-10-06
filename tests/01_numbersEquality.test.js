@@ -1,0 +1,47 @@
+import { expect } from 'chai';
+import KeysKey from "../lib/main.js";
+
+
+describe('Numbers equality', () => {
+  it('should return each number in an array', () => {
+    // const event0 = { key: '0', metaKey: false, shiftKey: false, ctrlKey: false };
+    // const result0 = KeysKey.is(event0, [KeysKey.Number.Zero]);
+    // expect(result0).to.deep.equal(['0']);
+
+    // const event1 = { key: '1', metaKey: false, shiftKey: false, ctrlKey: false };
+    // const result1 = KeysKey.is(event1, [KeysKey.Number.One]);
+    // expect(result1).to.deep.equal(['1']);
+
+    // const event2 = { key: '2', metaKey: false, shiftKey: false, ctrlKey: false };
+    // const result2 = KeysKey.is(event2, [KeysKey.Number.Two]);
+    // expect(result2).to.deep.equal(['2']);
+
+    // const event3 = { key: '3', metaKey: false, shiftKey: false, ctrlKey: false };
+    // const result3 = KeysKey.is(event3, [KeysKey.Number.Three]);
+    // expect(result3).to.deep.equal(['3']);
+
+    // const event4 = { key: '4', metaKey: false, shiftKey: false, ctrlKey: false };
+    // const result4 = KeysKey.is(event4, [KeysKey.Number.Four]);
+    // expect(result4).to.deep.equal(['4']);
+
+    // const event5 = { key: '5', metaKey: false, shiftKey: false, ctrlKey: false };
+    // const result5 = KeysKey.is(event5, [KeysKey.Number.Five]);
+    // expect(result5).to.deep.equal(['5']);
+
+    // const event6 = { key: '6', metaKey: false, shiftKey: false, ctrlKey: false };
+    // const result6 = KeysKey.is(event6, [KeysKey.Number.Six]);
+    // expect(result6).to.deep.equal(['6']);
+
+    // const event7 = { key: '7', metaKey: false, shiftKey: false, ctrlKey: false };
+    // const result7 = KeysKey.is(event7, [KeysKey.Number.Seven]);
+    // expect(result7).to.deep.equal(['7']);
+
+    // const event8 = { key: '8', metaKey: false, shiftKey: false, ctrlKey: false };
+    // const result8 = KeysKey.is(event8, [KeysKey.Number.Eight]);
+    // expect(result8).to.deep.equal(['8']);
+
+    // const event9 = { key: '9', metaKey: false, shiftKey: false, ctrlKey: false };
+    // const result9 = KeysKey.is(event9, [KeysKey.Number.Nine]);
+    // expect(result9).to.deep.equal(['9']); 
+  });
+});
