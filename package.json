@@ -9,11 +9,14 @@
     "lib"
   ],
   "scripts": {
-    "dev": "tsc -w & nodemon --watch lib --exec \"node lib/main.js\"",
+    "dev": "tsc -w & nodemon --watch lib --exec \"node lib/index.js\"",
     "prepublish": "tsc",
     "test": "mocha 'tests/**/*test.js'",
     "coverage": "nyc npm test",
-    "generate:docs": "typedoc --entryPointStrategy expand --out docs ./src"
+    "generate:docs": "typedoc --entryPointStrategy expand --out docs ./src",
+    "run-examples-html": "npx http-server",
+    "pack": "npm run prepublish && npm pack && npm link keyskey",
+    "publish": "npm publish"
   },
   "repository": {
     "type": "git",
@@ -34,6 +37,7 @@
     "@types/chai": "^4.3.6",
     "@types/mocha": "^10.0.2",
     "chai": "^4.3.10",
+    "jsdom": "^22.1.0",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
     "ts-node": "^10.9.1",
