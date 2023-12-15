@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keys Key Examples</title>
+</head>
+<body>
+    <h1>Keys Key Examples</h1>
+
+    <p>Type below and see the result in the console.</p>
+    <input id="input-field">
+
+
+    <script type="module">
+        import KeysKey from "../lib/index.js";
+
+        const inputField = document.getElementById("input-field");
+        inputField.addEventListener("keydown", (event) => {
+            const result = KeysKey.is(event, KeysKey.Or(event, KeysKey.Letter.A, KeysKey.Letter.B));
+
+            console.log(result);
+        });
+
+    </script>
+</body>
+</html>
