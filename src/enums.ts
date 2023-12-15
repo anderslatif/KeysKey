@@ -3,6 +3,8 @@ export type KeyEventEnum = {
   metaKey: boolean;
   shiftKey: boolean;
   ctrlKey: boolean;
+  altKey: boolean;
+  keyCode: number;
 };
 
 export enum NumberEnum {
@@ -81,28 +83,4 @@ export enum SpecialKeysEnum {
   Shift = 'Shift',
   Control = 'Ctrl',
 }
-
-export enum SpecialCombosEnum {
-  MetaAndShiftCombo = "Meta+Shift",
-  MetaOrShiftCombo = "Meta/Shift",
-  MetaAndControlCombo = "Meta+Control",
-  MetaOrControlCombo = "Meta/Control",
-  ControlAndShiftCombo = "Control+Shift",
-  ControlOrShiftCombo = "Control/Shift",
-}
-
-export const SpecialCombosList: Array<string> = [...Object.values(SpecialCombosEnum)];
-
-// todo special groups a-Z A-Z a-z 0-9 
-
-export const SpecialGroupsEnum = {
-    MetaAndShift: (event: KeyEventEnum) => event.metaKey && event.shiftKey ? [SpecialCombosEnum.MetaAndShiftCombo, "Meta", "Shift"] : null,
-    MetaOrShift: (event: KeyEventEnum) => event.metaKey || event.shiftKey ? [SpecialCombosEnum.MetaOrShiftCombo, "Meta", "Shift"] : null,
-    MetaAndControl: (event: KeyEventEnum) => event.metaKey && event.ctrlKey ? [SpecialCombosEnum.MetaAndControlCombo, "Meta", "Control"] : null,
-    MetaOrControl: (event: KeyEventEnum) => event.metaKey || event.ctrlKey ? [SpecialCombosEnum.MetaOrControlCombo, "Meta", "Control"] : null,
-    ControlAndShift: (event: KeyEventEnum) => event.ctrlKey && event.shiftKey ? [SpecialCombosEnum.ControlAndShiftCombo, "Control", "Shift"] : null,
-    ControlOrShift: (event: KeyEventEnum) => event.ctrlKey || event.shiftKey ? [SpecialCombosEnum.ControlOrShiftCombo, "Control", "Shift"] : null,
-}
-
-
 
