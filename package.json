@@ -1,6 +1,6 @@
 {
   "name": "keyskey",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "A keyboard key shortcut manager without fuss.",
   "type": "module",
   "main": "lib/index.js",
