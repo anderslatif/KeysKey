@@ -1,6 +1,5 @@
-import { KeyEventEnum as KeyEvent, NumberEnum, UppercaseLetterEnum, LowercaseLetterEnum, SpecialKeysEnum } from "./enums.js";
-import { unpackNestedArrays } from "./util.js";
-
+import { KeyEventEnum as KeyEvent, NumberEnum, LetterEnum, SpecialKeysEnum } from "./enums.js";
+import { unpackNestedArrays, getUniqueValues } from "./util.js";
 
 
 /**
@@ -9,8 +8,7 @@ import { unpackNestedArrays } from "./util.js";
 class KeysKey {
 
   public static Number: typeof NumberEnum = NumberEnum;
-  public static UppercaseLetter: typeof UppercaseLetterEnum = UppercaseLetterEnum;
-  public static LowercaseLetter: typeof LowercaseLetterEnum = LowercaseLetterEnum;
+  public static Letter: typeof LetterEnum = LetterEnum;
   public static SpecialKeys: typeof SpecialKeysEnum = SpecialKeysEnum;
 
   public static debugMode = false;
@@ -33,10 +31,10 @@ class KeysKey {
   /**
    * Checks if keys match the provided event.
    * @param {KeyEvent} event - The DOM event that was triggered.
-   *  @param {Array<KeysKey>} keys - A list of keys to check against the event. Can be provided as an array, KeysKeys groups (And / Or) or just lose arguments (will be interpreted as And).
-   * @returns {Array<string> | null} - Returns an array of keys that matched the event. If no key matched, returns null.
+   * @param {Array<KeysKey>} keys - A list of keys to check against the event. Can be provided as an array, KeysKeys groups (And / Or) or just lose arguments (will be interpreted as And).
+   * @returns {Array<string> | undefined} - Returns an array of keys that matched the event. If no key matched, returns undefined.
    */
-  static is(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] | null {
+  static is(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] | undefined {
     if (!Array.isArray(keys)) throw new Error(`The second argument (keys) must be an array of strings or KeysKey constants.`);
 
     let matchingKeys: KeysKey[] = [];
@@ -46,52 +44,52 @@ class KeysKey {
         matchingKeys = this.And(event, ...keyGroup);
       } 
 
-      return matchingKeys?.length === keys.length ? matchingKeys : null;
+      return getUniqueValues(matchingKeys)?.length === keys.length ? matchingKeys : undefined;
     }
   }
 
   /**
    * Checks if all the keys match the provided event.
    * @param {KeyEvent} event - The DOM event that was triggered.
-   *  @param {Array<KeysKey>} keys - A list of keys to check against the event. Can be provided as an array, KeysKeys groups (And / Or) or just lose arguments (will be interpreted as And).
-   * @returns {Array<string> | null} - Returns an array of keys that matched the event. If no key matched, returns null.
+   * @param {Array<KeysKey>} keys - A list of keys to check against the event. Can be provided as an array, KeysKeys groups (And / Or) or just lose arguments (will be interpreted as And).
+   * @returns {Array<string> | undefined} - Returns an array of keys that matched the event. If no key matched, returns undefined.
    */
-  public static And(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] | null {
+  public static And(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] | undefined {
     const matchedKeys = this.matchEventWithKeys(event, keys);
     
-    const same = matchedKeys?.length === keys.length;
-    return same ? matchedKeys : null;
+    const same = getUniqueValues(matchedKeys).length === keys.length;
+    return same ? matchedKeys : undefined;
   }
 
     /**
    * Checks if keys match the provided event. If one key doesn't match it immediately terminates and does nto provide a full list of matches. This is faster than the And method.
    * @param {KeyEvent} event - The DOM event that was triggered.
-   *  @param {Array<KeysKey>} keys - A list of keys to check against the event. Can be provided as an array, KeysKeys groups (And / Or) or just lose arguments (will be interpreted as And).
-   * @returns {Array<string> | null} - Returns an array of keys that matched the event. Returns null immediately if one key doesn't match.
+   * @param {Array<KeysKey>} keys - A list of keys to check against the event. Can be provided as an array, KeysKeys groups (And / Or) or just lose arguments (will be interpreted as And).
+   * @returns {Array<string> | undefined} - Returns an array of keys that matched the event. Returns undefined immediately if one key doesn't match.
    */
-  public static OptimizedAnd(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] | null {
+  public static OptimizedAnd(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] | undefined {
     this.optimizedAndMode = true;
     const matchedKeys = this.matchEventWithKeys(event, ...keys);
 
-    const same = matchedKeys?.length === keys.length;
+    const same = getUniqueValues(matchedKeys).length === keys.length;
     
-    return same ? matchedKeys : null;
+    return same ? matchedKeys : undefined;
   }
   
     /**
    * Checks if one of the keys matches the provided event.
    * @param {KeyEvent} event - The DOM event that was triggered.
-   *  @param {Array<KeysKey>} keys - A list of keys to check against the event. Can be provided as an array, KeysKeys groups (And / Or) or just lose arguments (will be interpreted as And).
-   * @returns {Array<string> | null} - Returns an array of keys that matched the event. If no key matched, returns null.
+   * @param {Array<KeysKey>} keys - A list of keys to check against the event. Can be provided as an array, KeysKeys groups (And / Or) or just lose arguments (will be interpreted as And).
+   * @returns {Array<string> | undefined} - Returns an array of keys that matched the event. If no key matched, returns undefined.
    */
-  public static Or(event: KeyEvent, ...keys:  KeysKey[]): KeysKey[] | null {
+  public static Or(event: KeyEvent, ...keys:  KeysKey[]): KeysKey[] | undefined {
 
     const matchedKeys = this.matchEventWithKeys(event, ...keys);
     
-    const isSame = matchedKeys?.length === keys.length;
+    const isSame = getUniqueValues(matchedKeys).length === keys.length;
     const isIncludedIn = keys.map(key => matchedKeys.includes(key)).includes(true);
     
-    return isSame || isIncludedIn ? matchedKeys : null;
+    return isSame || isIncludedIn ? matchedKeys : undefined;
   }
 
   /**
@@ -105,33 +103,33 @@ class KeysKey {
    * `KeysKey.SpecialGroups.isMetaAndShift(event)`
    *
    * Methods:
-  * - `isDigit(event: KeyEvent): KeysKey[] | null`
-  *   Returns an array of `KeysKey` if the key event corresponds to a digit, or null otherwise.
+  * - `isDigit(event: KeyEvent): KeysKey[] | undefined`
+  *   Returns an array of `KeysKey` if the key event corresponds to a digit, or undefined otherwise.
   *
-  * - `isLetter(event: KeyEvent): KeysKey[] | null`
-  *   Returns an array of `KeysKey` if the key event corresponds to a letter, or null otherwise.
+  * - `isLetter(event: KeyEvent): KeysKey[] | undefined`
+  *   Returns an array of `KeysKey` if the key event corresponds to a letter, or undefined otherwise.
   *
-  * - `isLowerCase(event: KeyEvent): KeysKey[] | null`
-  *   Returns an array of `KeysKey` if the key event corresponds to a lowercase letter, or null otherwise.
+  * - `isLowerCase(event: KeyEvent): KeysKey[] | undefined`
+  *   Returns an array of `KeysKey` if the key event corresponds to a lowercase letter, or undefined otherwise.
   *
-  * - `isUppercaseLetter(event: KeyEvent): KeysKey[] | null`
-  *   Returns an array of `KeysKey` if the key event corresponds to an uppercase letter, or null otherwise.
+  * - `isUppercaseLetter(event: KeyEvent): KeysKey[] | undefined`
+  *   Returns an array of `KeysKey` if the key event corresponds to an uppercase letter, or undefined otherwise.
   *
-  * - `isNonEnglishLetter(event: KeyEvent): KeysKey[] | null`
-  *   Returns an array of `KeysKey` if the key event corresponds to a non-English letter, or null otherwise.
+  * - `isNonEnglishLetter(event: KeyEvent): KeysKey[] | undefined`
+  *   Returns an array of `KeysKey` if the key event corresponds to a non-English letter, or undefined otherwise.
   *
   * - `isMetaAndShift(event: KeyEvent): KeysKey
    * 
    * Additional methods follow a similar pattern, analyzing different key combinations.
    */
   public static SpecialGroups = {
-    isAltAndControl: (event: KeyEvent) => event.altKey && event.ctrlKey ? ["Alt", "Control"] : null,
-    isAltAndShift: (event: KeyEvent) => event.altKey && event.shiftKey ? ["Alt", "Shift"] : null,
-    isAltKey: (event: KeyEvent) => event.altKey ? ["Alt"] : null,
-    isAltOrShift: (event: KeyEvent) => event.altKey || event.shiftKey ? ["Alt", "Shift"] : null,
-    isControlAndShift: (event: KeyEvent) => event.ctrlKey && event.shiftKey ? ["Control", "Shift"] : null,
-    isControlOrShift: (event: KeyEvent) => event.ctrlKey || event.shiftKey ? ["Control", "Shift"] : null,
-    isDelete: (event: KeyEvent) => event.keyCode === 46 ? [event.key] : null,
+    isAltAndControl: (event: KeyEvent) => event.altKey && event.ctrlKey ? ["Alt", "Control"] : undefined,
+    isAltAndShift: (event: KeyEvent) => event.altKey && event.shiftKey ? ["Alt", "Shift"] : undefined,
+    isAltKey: (event: KeyEvent) => event.altKey ? ["Alt"] : undefined,
+    isAltOrShift: (event: KeyEvent) => event.altKey || event.shiftKey ? ["Alt", "Shift"] : undefined,
+    isControlAndShift: (event: KeyEvent) => event.ctrlKey && event.shiftKey ? ["Control", "Shift"] : undefined,
+    isControlOrShift: (event: KeyEvent) => event.ctrlKey || event.shiftKey ? ["Control", "Shift"] : undefined,
+    isDelete: (event: KeyEvent) => event.keyCode === 46 ? [event.key] : undefined,
     isDigit: (event: KeyEvent) => {
       const keyString: string = "" + event.key;
       const keyCode = keyString.charCodeAt(0);
@@ -139,10 +137,10 @@ class KeysKey {
           return [event.key];
       }
     },
-    isEnter: (event: KeyEvent) => event.keyCode === 13 ? [event.key] : null,
-    isEscape: (event: KeyEvent) => event.keyCode === 27 ? [event.key] : null,
-    isFunctionKey: (event: KeyEvent) => event.keyCode >= 112 && event.keyCode <= 123 ? [event.key] : null,
-    isInsert: (event: KeyEvent) => event.keyCode === 45 ? [event.key] : null,
+    isEnter: (event: KeyEvent) => event.keyCode === 13 ? [event.key] : undefined,
+    isEscape: (event: KeyEvent) => event.keyCode === 27 ? [event.key] : undefined,
+    isFunctionKey: (event: KeyEvent) => event.keyCode >= 112 && event.keyCode <= 123 ? [event.key] : undefined,
+    isInsert: (event: KeyEvent) => event.keyCode === 45 ? [event.key] : undefined,
     isLetter: (event: KeyEvent) => {
       const keyString: string = "" + event.key;
       const keyCode = keyString.charCodeAt(0);
@@ -157,19 +155,19 @@ class KeysKey {
           return [event.key];
       }
     },
-    isMediaControl: (event: KeyEvent) => event.keyCode >= 166 && event.keyCode <= 183 ? [event.key] : null,
-    isMetaAndControl: (event: KeyEvent) => event.metaKey && event.ctrlKey ? ["Meta", "Control"] : null,
-    isMetaAndShift: (event: KeyEvent) => event.metaKey && event.shiftKey ? ["Meta", "Shift"] : null,
-    isMetaOrControl: (event: KeyEvent) => event.metaKey || event.ctrlKey ? ["Meta", "Control"] : null,
-    isMetaOrShift: (event: KeyEvent) => event.metaKey || event.shiftKey ? ["Meta", "Shift"] : null,
-    isModifier: (event: KeyEvent) => event.metaKey || event.shiftKey || event.ctrlKey || event.altKey ? [event.key] : null,
-    isNavigationKey: (event: KeyEvent): string[] | null => event.keyCode >= 33 && event.keyCode <= 40 ? [event.key] : null,
+    isMediaControl: (event: KeyEvent) => event.keyCode >= 166 && event.keyCode <= 183 ? [event.key] : undefined,
+    isMetaAndControl: (event: KeyEvent) => event.metaKey && event.ctrlKey ? ["Meta", "Control"] : undefined,
+    isMetaAndShift: (event: KeyEvent) => event.metaKey && event.shiftKey ? ["Meta", "Shift"] : undefined,
+    isMetaOrControl: (event: KeyEvent) => event.metaKey || event.ctrlKey ? ["Meta", "Control"] : undefined,
+    isMetaOrShift: (event: KeyEvent) => event.metaKey || event.shiftKey ? ["Meta", "Shift"] : undefined,
+    isModifier: (event: KeyEvent) => event.metaKey || event.shiftKey || event.ctrlKey || event.altKey ? [event.key] : undefined,
+    isNavigationKey: (event: KeyEvent): string[] | undefined => event.keyCode >= 33 && event.keyCode <= 40 ? [event.key] : undefined,
     isNonEnglishLetter: (event: KeyEvent) => {
       const keyString: string = "" + event.key;
       if (/[^\x00-\x7F]/.test(keyString)) {
         return [event.key];
       }
-      return null;
+      return undefined;
     },
     isSpecialCharacter: (event: KeyEvent) => {
       const keyString: string = "" + event.key;
@@ -178,7 +176,7 @@ class KeysKey {
         (keyCode >= 91 && keyCode <= 96) || (keyCode >= 123 && keyCode <= 126)) { 
           return [event.key];
       }
-      return null;
+      return undefined;
     },
     isUppercaseLetter: (event: KeyEvent) => {
       const keyString: string = "" + event.key;
@@ -187,7 +185,7 @@ class KeysKey {
           return [event.key];
       }
     },
-    isWhitespace: (event: KeyEvent) => event.keyCode === 32 || event.keyCode === 9 ? [event.key] : null,
+    isWhitespace: (event: KeyEvent) => event.keyCode === 32 || event.keyCode === 9 ? [event.key] : undefined,
   };
 
   /**
@@ -217,20 +215,19 @@ class KeysKey {
       }
 
       if (Object.values(KeysKey.Number).includes(key as NumberEnum) 
-      || Object.values(KeysKey.UppercaseLetter).includes(key as UppercaseLetterEnum)
-      || Object.values(KeysKey.LowercaseLetter).includes(key as LowercaseLetterEnum)) {
+      || Object.values(KeysKey.Letter).includes(key as LetterEnum)) {
         if (event.key === key) {
           matchedKeys.push(key);
         } else if (this.optimizedAndMode) {
-          return null;
+          return undefined;
         }
 
       } else if (Object.values(KeysKey.SpecialKeys).includes(key as SpecialKeysEnum)) {
         
-
-        if (key === "Meta" && event.metaKey && !matchedKeys.includes("Meta")) matchedKeys.push(key);
-        if (key === "Shift" && event.shiftKey && !matchedKeys.includes("Shift")) matchedKeys.push(key);
-        if (key === "Control" && event.ctrlKey && !matchedKeys.includes("Control")) matchedKeys.push(key);
+        // todo finish
+        if (key === "Meta" && event.metaKey) matchedKeys.push(key);
+        if (key === "Shift" && event.shiftKey) matchedKeys.push(key);
+        if (key === "Control" && event.ctrlKey) matchedKeys.push(key);
       } 
     }
     

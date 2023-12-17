@@ -5,6 +5,7 @@ export type KeyEventEnum = {
   ctrlKey: boolean;
   altKey: boolean;
   keyCode: number;
+  getModifierState: (key: string) => boolean;
 };
 
 export enum NumberEnum {
@@ -19,7 +20,33 @@ export enum NumberEnum {
   Nine = '9',
 };
 
-export enum LowercaseLetterEnum {
+export enum LetterEnum {
+  A = 'A',
+  B = 'B',
+  C = 'C',
+  D = 'D',
+  E = 'E',
+  F = 'F',
+  G = 'G',
+  H = 'H',
+  I = 'I',
+  J = 'J',
+  K = 'K',
+  L = 'L',
+  M = 'M',
+  N = 'N',
+  O = 'O',
+  P = 'P',
+  Q = 'Q',
+  R = 'R',
+  S = 'S',
+  T = 'T',
+  U = 'U',
+  V = 'V',
+  W = 'W',
+  X = 'X',
+  Y = 'Y',
+  Z = 'Z',
   a = 'a',
   b = 'b',
   c = 'c',
@@ -48,39 +75,29 @@ export enum LowercaseLetterEnum {
   z = 'z',
 }
 
-export enum UppercaseLetterEnum {
-  A = 'A',
-  B = 'B',
-  C = 'C',
-  D = 'D',
-  E = 'E',
-  F = 'F',
-  G = 'G',
-  H = 'H',
-  I = 'I',
-  J = 'J',
-  K = 'K',
-  L = 'L',
-  M = 'M',
-  N = 'N',
-  O = 'O',
-  P = 'P',
-  Q = 'Q',
-  R = 'R',
-  S = 'S',
-  T = 'T',
-  U = 'U',
-  V = 'V',
-  W = 'W',
-  X = 'X',
-  Y = 'Y',
-  Z = 'Z',
-}
-
 
 export enum SpecialKeysEnum {
   Meta = 'Meta',
   Shift = 'Shift',
   Control = 'Ctrl',
+  Alt = 'Alt',
+  Option = 'Option',
+  Enter = 'Enter',
+  Backspace = 'Backspace',
+  Tab = 'Tab',
+  CapsLock = 'CapsLock',
+  Escape = 'Escape',
+  Space = 'Space',
+  ArrowUp = 'ArrowUp',
+  ArrowDown = 'ArrowDown',
+  ArrowLeft = 'ArrowLeft',
+  ArrowRight = 'ArrowRight',
+  Delete = 'Delete',
+  Home = 'Home',
+  End = 'End',
+  PageUp = 'PageUp',
+  PageDown = 'PageDown',
+  Insert = 'Insert',
+  NumLock = 'NumLock',
 }
 

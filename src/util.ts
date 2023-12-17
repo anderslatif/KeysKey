@@ -11,6 +11,6 @@ export function unpackNestedArrays(list: KeysKey[]): KeysKey[] {
   }, [] as any);
 }
 
-function isDigit() {
-
+export function getUniqueValues(list: KeysKey[]): KeysKey[] {
+  return [...new Set(list)];
 }
