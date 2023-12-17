@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import KeysKey from "../lib/main.js";
+import KeysKey from "../lib/index.js";
 
 
 describe('And test', () => {
