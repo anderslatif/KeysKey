@@ -12,7 +12,7 @@ describe('Testing undefined values', () => {
     });
 
     it('undefined is provided instead of event', () => {
-        // KeysKey.is(undefined, [KeysKey.Number.Zero]);
+        // KeysKey.Is(undefined, [KeysKey.Number.Zero]);
 
         
     });
