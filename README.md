@@ -75,7 +75,7 @@ console.log(result); // [ 'Meta', 'Shift' ]
 
 ## Full Documentation
 
-[Generated Docs from JS Docstrings](https://anderslatif.github.io/KeysKey/generated_docs/)
+[Generated Docs from JS Docstrings contain all the types.](https://anderslatif.github.io/KeysKey/generated_docs/)
 
 ### Library Methods
 
