@@ -1,3 +1,4 @@
+// This is the event that the browser dispatches when a key is pressed.
 export type KeyEventEnum = {
   key: string;
   metaKey: boolean;
@@ -8,7 +9,7 @@ export type KeyEventEnum = {
   getModifierState: (key: string) => boolean;
 };
 
-export enum NumberEnum {
+export enum NumberKeysEnum {
   One = '1',
   Two = '2',
   Three = '3',
@@ -20,7 +21,7 @@ export enum NumberEnum {
   Nine = '9',
 };
 
-export enum LetterEnum {
+export enum LetterKeysEnum {
   A = 'A',
   B = 'B',
   C = 'C',
@@ -73,31 +74,121 @@ export enum LetterEnum {
   x = 'x',
   y = 'y',
   z = 'z',
-}
+};
 
+export enum SpecialCharacterKeysEnum {
+  Ampersand = '&',
+  Asterisk = '*',
+  At = '@',
+  Backquote = '`',
+  Backslash = '\\',
+  BracketLeft = '[',
+  BracketRight = ']',
+  Caret = '^',
+  Colon = ':',
+  Comma = ',',
+  CurlyLeft = '{',
+  CurlyRight = '}',
+  Dollar = '$',
+  Equal = '=',
+  Exclamation = '!',
+  GreaterThan = '>',
+  Hash = '#',
+  LessThan = '<',
+  ParenLeft = '(',
+  ParenRight = ')',
+  Percent = '%',
+  Pipe = '|',
+  Period = '.',
+  Plus = '+',
+  QuestionMark = '?',
+  Quote = '\'',
+  Semicolon = ';',
+  Slash = '/',
+  Subtract = '-',
+  Tilde = '~',
+  Underscore = '_',
+};
 
-export enum SpecialKeysEnum {
-  Meta = 'Meta',
-  Shift = 'Shift',
-  Control = 'Ctrl',
-  Alt = 'Alt',
-  Option = 'Option',
+export enum WhiteSpaceKeysEnum {
   Enter = 'Enter',
-  Backspace = 'Backspace',
+  Space = ' ',
   Tab = 'Tab',
+};
+
+export enum MultimediaKeysEnum {
+  AudioVolumeDown = 'AudioVolumeDown',
+  AudioVolumeMute = 'AudioVolumeMute',
+  AudioVolumeUp = 'AudioVolumeUp',
+  MediaPlayPause = 'MediaPlayPause',
+  MediaStop = 'MediaStop',
+  MediaTrackNext = 'MediaTrackNext',
+  MediaTrackPrevious = 'MediaTrackPrevious',
+};
+
+export enum LockKeysEnum {
   CapsLock = 'CapsLock',
-  Escape = 'Escape',
-  Space = 'Space',
-  ArrowUp = 'ArrowUp',
+  NumLock = 'NumLock',
+  ScrollLock = 'ScrollLock',
+};
+
+export enum FunctionKeysEnum {
+  F1 = 'F1',
+  F2 = 'F2',
+  F3 = 'F3',
+  F4 = 'F4',
+  F5 = 'F5',
+  F6 = 'F6',
+  F7 = 'F7',
+  F8 = 'F8',
+  F9 = 'F9',
+  F10 = 'F10',
+  F11 = 'F11',
+  F12 = 'F12',
+};
+
+export enum NavigationKeysEnum {
   ArrowDown = 'ArrowDown',
   ArrowLeft = 'ArrowLeft',
   ArrowRight = 'ArrowRight',
-  Delete = 'Delete',
-  Home = 'Home',
+  ArrowUp = 'ArrowUp',
   End = 'End',
-  PageUp = 'PageUp',
+  Home = 'Home',
   PageDown = 'PageDown',
+  PageUp = 'PageUp',
+};
+
+export enum EditingKeysEnum {
+  Backspace = 'Backspace',
+  Delete = 'Delete',
+  Enter = 'Enter',
+  Escape = 'Escape',
   Insert = 'Insert',
-  NumLock = 'NumLock',
-}
+  Tab = 'Tab',
+};
+
+export enum ModifierKeysEnum {
+  Alt = 'Alt',
+  Control = 'Ctrl',
+  Meta = 'Meta',
+  Option = 'Option',
+  Shift = 'Shift',
+};
+
+export const SpecialKeysGroup = {
+  ...SpecialCharacterKeysEnum,
+  ...WhiteSpaceKeysEnum,
+  ...MultimediaKeysEnum,
+  ...LockKeysEnum,
+  ...FunctionKeysEnum,
+  ...NavigationKeysEnum,
+  ...EditingKeysEnum,
+  ...ModifierKeysEnum,
+} as const;
+
+export const AllKeysGroup = {
+  ...NumberKeysEnum,
+  ...LetterKeysEnum,
+  ...SpecialKeysGroup,
+} as const;
 

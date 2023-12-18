@@ -1,4 +1,17 @@
-import { KeyEventEnum as KeyEvent, NumberEnum, LetterEnum, SpecialKeysEnum } from "./enums.js";
+import { 
+  KeyEventEnum as KeyEvent, 
+  NumberKeysEnum, 
+  LetterKeysEnum,   
+  SpecialCharacterKeysEnum,
+  WhiteSpaceKeysEnum,
+  MultimediaKeysEnum,
+  LockKeysEnum,
+  FunctionKeysEnum,
+  NavigationKeysEnum,
+  EditingKeysEnum,
+  ModifierKeysEnum,
+  SpecialKeysGroup,
+  AllKeysGroup } from "./enums.js";
 import { unpackNestedArrays, getUniqueValues } from "./util.js";
 
 
@@ -7,9 +20,19 @@ import { unpackNestedArrays, getUniqueValues } from "./util.js";
  * */
 class KeysKey {
 
-  public static Number: typeof NumberEnum = NumberEnum;
-  public static Letter: typeof LetterEnum = LetterEnum;
-  public static SpecialKeys: typeof SpecialKeysEnum = SpecialKeysEnum;
+  public static Number: typeof NumberKeysEnum = NumberKeysEnum;
+  public static Letter: typeof LetterKeysEnum = LetterKeysEnum;
+  public static SpecialCharacter: typeof SpecialCharacterKeysEnum = SpecialCharacterKeysEnum;
+  public static WhiteSpace: typeof WhiteSpaceKeysEnum = WhiteSpaceKeysEnum;
+  public static Multimedia: typeof MultimediaKeysEnum = MultimediaKeysEnum;
+  public static Lock: typeof LockKeysEnum = LockKeysEnum;
+  public static Function: typeof FunctionKeysEnum = FunctionKeysEnum;
+  public static Navigation: typeof NavigationKeysEnum = NavigationKeysEnum;
+  public static Editing: typeof EditingKeysEnum = EditingKeysEnum;
+  public static ModifierKeys: typeof ModifierKeysEnum = ModifierKeysEnum;
+  public static SpecialKeysGroups: typeof SpecialKeysGroup = SpecialKeysGroup;
+  public static AllKeys: typeof AllKeysGroup = AllKeysGroup;
+  
 
   public static debugMode = false;
   public static optimizedAndMode = false;
@@ -34,7 +57,7 @@ class KeysKey {
    * @param {Array<KeysKey>} keys - A list of keys to check against the event. Can be provided as an array, KeysKeys groups (And / Or) or just lose arguments (will be interpreted as And).
    * @returns {Array<string> | undefined} - Returns an array of keys that matched the event. If no key matched, returns undefined.
    */
-  static is(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] | undefined {
+  static Is(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] | undefined {
     if (!Array.isArray(keys)) throw new Error(`The second argument (keys) must be an array of strings or KeysKey constants.`);
 
     let matchingKeys: KeysKey[] = [];
@@ -95,12 +118,12 @@ class KeysKey {
   /**
    * A collection of functions within the `KeysKey` object that assess special key group combinations in key events.
    *
-   * The `SpecialGroups` object contains various methods to check for specific combinations of keys being pressed 
+   * The `SpecialCombos` object contains various methods to check for specific combinations of keys being pressed 
    * during a `KeyEvent`. Each method takes a `KeyEvent` as an argument and returns a boolean indicating whether 
    * the specific key combination is active.
    *
    * Usage Example:
-   * `KeysKey.SpecialGroups.isMetaAndShift(event)`
+   * `KeysKey.SpecialCombos.isMetaAndShift(event)`
    *
    * Methods:
   * - `isDigit(event: KeyEvent): KeysKey[] | undefined`
@@ -122,7 +145,7 @@ class KeysKey {
    * 
    * Additional methods follow a similar pattern, analyzing different key combinations.
    */
-  public static SpecialGroups = {
+  public static SpecialCombos = {
     isAltAndControl: (event: KeyEvent) => event.altKey && event.ctrlKey ? ["Alt", "Control"] : undefined,
     isAltAndShift: (event: KeyEvent) => event.altKey && event.shiftKey ? ["Alt", "Shift"] : undefined,
     isAltKey: (event: KeyEvent) => event.altKey ? ["Alt"] : undefined,
@@ -137,10 +160,7 @@ class KeysKey {
           return [event.key];
       }
     },
-    isEnter: (event: KeyEvent) => event.keyCode === 13 ? [event.key] : undefined,
-    isEscape: (event: KeyEvent) => event.keyCode === 27 ? [event.key] : undefined,
     isFunctionKey: (event: KeyEvent) => event.keyCode >= 112 && event.keyCode <= 123 ? [event.key] : undefined,
-    isInsert: (event: KeyEvent) => event.keyCode === 45 ? [event.key] : undefined,
     isLetter: (event: KeyEvent) => {
       const keyString: string = "" + event.key;
       const keyCode = keyString.charCodeAt(0);
@@ -214,21 +234,18 @@ class KeysKey {
         return this.matchEventWithKeys(event, ...unpackedKeys);
       }
 
-      if (Object.values(KeysKey.Number).includes(key as NumberEnum) 
-      || Object.values(KeysKey.Letter).includes(key as LetterEnum)) {
+      if (Object.values(KeysKey.Number).includes(key as NumberKeysEnum) 
+      || Object.values(KeysKey.Letter).includes(key as LetterKeysEnum)) {
         if (event.key === key) {
           matchedKeys.push(key);
         } else if (this.optimizedAndMode) {
           return undefined;
         }
-
-      } else if (Object.values(KeysKey.SpecialKeys).includes(key as SpecialKeysEnum)) {
-        
-        // todo finish
-        if (key === "Meta" && event.metaKey) matchedKeys.push(key);
-        if (key === "Shift" && event.shiftKey) matchedKeys.push(key);
-        if (key === "Control" && event.ctrlKey) matchedKeys.push(key);
-      } 
+      } else if (Object.values(KeysKey.SpecialKeysGroups).includes(key as any)) {
+        matchedKeys.push(key);
+      } else if (Object.values(KeysKey.AllKeys).includes(key as any)) {
+        matchedKeys.push(key);
+      }
     }
     
     return matchedKeys;
