@@ -33,45 +33,68 @@ Since this library uses TypeScript just import and explore by letting your Intel
 
 ## Basic Usage
 
+Get the event from `keydown`, `keyup`, `keypress` and populate it as the first argument always:
+
 ```javascript
 import KeysKey from "keyskey";
 
 window.onkeydown = (event) => {
-  const result = KeysKey.Or(event, ["A", "a"]);
+  const result = KeysKey.Is(event, "A");
   // assuming the letter A has been pressed
-  console.log(result); //  [ 'A' ]
+  console.log(result); // [ 'A' ]
 };
 ```
 
-Also works as a variadic function.
+All methods return undefined when there is no match:
+
+```javascript
+import KeysKey from "keyskey";
+
+const event = { key: 'A', metaKey: false, shiftKey: false, ctrlKey: false };
+const result = KeysKey.Is(event, "a");
+console.log(result); // // undefined
+```
+
+Can give an array of keys:
+
+```javascript
+import KeysKey from "keyskey";
+
+const event = { key: 'A', metaKey: false, shiftKey: false, ctrlKey: false };  
+const result = KeysKey.Or(event, ["A", "a"]);
+console.log(result); //  [ 'A' ]
+
+```
+
+Also works as a variadic function:
 
 ```javascript
 import KeysKey from "keyskey";
 
 const event = { key: '1', metaKey: true, shiftKey: false, ctrlKey: false };
-const result = KeysKey.And(event, KeysKey.Number.One, KeysKey.SpecialKeys.Meta);
-console.log(result) // [ '1' ]
+const result = KeysKey.And(event, KeysKey.Number.One, KeysKey.ModifierKeys.Meta);
+console.log(result) // [ '1', "Meta" ]
 ```
 
-Always returns undefined when there is no match.
+Example of a special key combo:
 
 ```javascript
 import KeysKey from "keyskey";
 
 const event = { key: 'A', metaKey: true, shiftKey: true, ctrlKey: false };
-const result = KeysKey.Is(event, "a");
-console.log(result); // undefined
-```
-
-```javascript
-import KeysKey from "keyskey";
-
-const event = { key: 'A', metaKey: true, shiftKey: true, ctrlKey: false };
-const result = KeysKey.SpecialGroups.isMetaAndShift(event);
+const result = KeysKey.SpecialCombos.isMetaAndShift(event);
 console.log(result); // [ 'Meta', 'Shift' ]
 ```
 
+Another example of a special key combo:
 
+```javascript
+import KeysKey from "keyskey";
+
+const event = { key: '8', metaKey: false, shiftKey: false, ctrlKey: false };
+const result = KeysKey.SpecialCombos.isDigit(event);
+console.log(result); // [ '8' ]
+```
 
 ## Full Documentation
 
