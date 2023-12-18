@@ -18,26 +18,239 @@
 <a href="https://packagephobia.com/result?p=keyskey"><img src="https://packagephobia.com/badge?p=keyskey" alt="NPM Install Size"></a>
 <a href="https://github.com/anderslatif/KeysKey/actions/workflows/test.yml"><img src="https://github.com/anderslatif/KeysKey/actions/workflows/test.yml/badge.svg" alt="Test CI"></a></p>
 <p>Provides the key to your keys.</p>
-<p>OS agnostic Keyboard mappings without the usual quirks.</p>
+<p>Clean and readable interface for OS agnostic Keyboard mappings without the usual quirks.</p>
+<p><a href="https://www.npmjs.com/package/keyskey">https://www.npmjs.com/package/keyskey</a></p>
 <a id="md:motivation" class="tsd-anchor"></a><h2><a href="#md:motivation">Motivation</a></h2><p><strong>Purpose</strong>: Streamlines key event handling in web development.</p>
 <p><strong>Use Cases</strong>: For web games, HTML Canvas, and global key presses in Electron-like web-based software.</p>
 <p><strong>Current Issue</strong>: Existing libraries are not user-friendly and do not produce readable code.</p>
 <p><strong>Solution</strong>: Provides a clear, readable method to detect specific key presses, simplifying cross-platform key event management.</p>
 <a id="md:demo" class="tsd-anchor"></a><h2><a href="#md:demo">Demo</a></h2><p><a href="https://anderslatif.github.io/KeysKey/">Demo</a></p>
 <a id="md:documentation" class="tsd-anchor"></a><h2><a href="#md:documentation">Documentation</a></h2><p>Since this library uses TypeScript just import and explore by letting your IntelliSense guide you. </p>
-<a id="md:basic-usage" class="tsd-anchor"></a><h2><a href="#md:basic-usage">Basic Usage</a></h2><pre><code class="language-javascript"><span class="hl-0">import</span><span class="hl-1"> </span><span class="hl-2">KeysKey</span><span class="hl-1"> </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&quot;keyskey&quot;</span><span class="hl-1">;</span><br/><br/><span class="hl-2">window</span><span class="hl-1">.</span><span class="hl-4">onkeydown</span><span class="hl-1"> = (</span><span class="hl-2">event</span><span class="hl-1">) </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-6">// assuming the letter A has been pressed</span><br/><span class="hl-1">  </span><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-7">result</span><span class="hl-1"> = </span><span class="hl-2">KeysKey</span><span class="hl-1">.</span><span class="hl-4">Or</span><span class="hl-1">(</span><span class="hl-2">event</span><span class="hl-1">, [</span><span class="hl-3">&quot;A&quot;</span><span class="hl-1">, </span><span class="hl-3">&quot;a&quot;</span><span class="hl-1">]);</span><br/><span class="hl-1">  </span><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-4">log</span><span class="hl-1">(</span><span class="hl-2">result</span><span class="hl-1">); </span><span class="hl-6">//  [ &#39;A&#39; ]</span><br/><span class="hl-1">};</span>
+<a id="md:basic-usage" class="tsd-anchor"></a><h2><a href="#md:basic-usage">Basic Usage</a></h2><p>Get the event from <code>keydown</code>, <code>keyup</code>, <code>keypress</code> and populate it as the first argument always:</p>
+<pre><code class="language-javascript"><span class="hl-0">import</span><span class="hl-1"> </span><span class="hl-2">KeysKey</span><span class="hl-1"> </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&quot;keyskey&quot;</span><span class="hl-1">;</span><br/><br/><span class="hl-2">window</span><span class="hl-1">.</span><span class="hl-4">onkeydown</span><span class="hl-1"> = (</span><span class="hl-2">event</span><span class="hl-1">) </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">result</span><span class="hl-1"> = </span><span class="hl-2">KeysKey</span><span class="hl-1">.</span><span class="hl-4">Is</span><span class="hl-1">(</span><span class="hl-2">event</span><span class="hl-1">, </span><span class="hl-3">&quot;A&quot;</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-7">// assuming the letter A has been pressed</span><br/><span class="hl-1">  </span><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-4">log</span><span class="hl-1">(</span><span class="hl-2">result</span><span class="hl-1">); </span><span class="hl-7">// [ &#39;A&#39; ]</span><br/><span class="hl-1">};</span>
 </code><button>Copy</button></pre>
-<p>Also works as a variadic function.</p>
-<pre><code class="language-javascript"><span class="hl-0">import</span><span class="hl-1"> </span><span class="hl-2">KeysKey</span><span class="hl-1"> </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&quot;keyskey&quot;</span><span class="hl-1">;</span><br/><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-7">event</span><span class="hl-1"> = { </span><span class="hl-2">key:</span><span class="hl-1"> </span><span class="hl-3">&#39;1&#39;</span><span class="hl-1">, </span><span class="hl-2">metaKey:</span><span class="hl-1"> </span><span class="hl-5">true</span><span class="hl-1">, </span><span class="hl-2">shiftKey:</span><span class="hl-1"> </span><span class="hl-5">false</span><span class="hl-1">, </span><span class="hl-2">ctrlKey:</span><span class="hl-1"> </span><span class="hl-5">false</span><span class="hl-1"> };</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-7">result</span><span class="hl-1"> = </span><span class="hl-2">KeysKey</span><span class="hl-1">.</span><span class="hl-4">And</span><span class="hl-1">(</span><span class="hl-2">event</span><span class="hl-1">, </span><span class="hl-2">KeysKey</span><span class="hl-1">.</span><span class="hl-2">Number</span><span class="hl-1">.</span><span class="hl-2">One</span><span class="hl-1">, </span><span class="hl-2">KeysKey</span><span class="hl-1">.</span><span class="hl-2">SpecialKeys</span><span class="hl-1">.</span><span class="hl-2">Meta</span><span class="hl-1">);</span>
+<p>All methods return undefined when there is no match:</p>
+<pre><code class="language-javascript"><span class="hl-0">import</span><span class="hl-1"> </span><span class="hl-2">KeysKey</span><span class="hl-1"> </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&quot;keyskey&quot;</span><span class="hl-1">;</span><br/><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">event</span><span class="hl-1"> = { </span><span class="hl-2">key:</span><span class="hl-1"> </span><span class="hl-3">&#39;A&#39;</span><span class="hl-1">, </span><span class="hl-2">metaKey:</span><span class="hl-1"> </span><span class="hl-5">false</span><span class="hl-1">, </span><span class="hl-2">shiftKey:</span><span class="hl-1"> </span><span class="hl-5">false</span><span class="hl-1">, </span><span class="hl-2">ctrlKey:</span><span class="hl-1"> </span><span class="hl-5">false</span><span class="hl-1"> };</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">result</span><span class="hl-1"> = </span><span class="hl-2">KeysKey</span><span class="hl-1">.</span><span class="hl-4">Is</span><span class="hl-1">(</span><span class="hl-2">event</span><span class="hl-1">, </span><span class="hl-3">&quot;a&quot;</span><span class="hl-1">);</span><br/><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-4">log</span><span class="hl-1">(</span><span class="hl-2">result</span><span class="hl-1">); </span><span class="hl-7">// // undefined</span>
 </code><button>Copy</button></pre>
-<p>Always returns undefined when there is no match.</p>
-<pre><code class="language-javascript"><span class="hl-0">import</span><span class="hl-1"> </span><span class="hl-2">KeysKey</span><span class="hl-1"> </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&quot;keyskey&quot;</span><span class="hl-1">;</span><br/><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-7">event</span><span class="hl-1"> = { </span><span class="hl-2">key:</span><span class="hl-1"> </span><span class="hl-3">&#39;A&#39;</span><span class="hl-1">, </span><span class="hl-2">metaKey:</span><span class="hl-1"> </span><span class="hl-5">true</span><span class="hl-1">, </span><span class="hl-2">shiftKey:</span><span class="hl-1"> </span><span class="hl-5">true</span><span class="hl-1">, </span><span class="hl-2">ctrlKey:</span><span class="hl-1"> </span><span class="hl-5">false</span><span class="hl-1"> };</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-7">result</span><span class="hl-1"> = </span><span class="hl-2">KeysKey</span><span class="hl-1">.</span><span class="hl-4">is</span><span class="hl-1">(</span><span class="hl-2">event</span><span class="hl-1">, </span><span class="hl-3">&quot;a&quot;</span><span class="hl-1">);</span><br/><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-4">log</span><span class="hl-1">(</span><span class="hl-2">result</span><span class="hl-1">); </span><span class="hl-6">// undefined</span>
+<p>Can give an array of keys:</p>
+<pre><code class="language-javascript"><span class="hl-0">import</span><span class="hl-1"> </span><span class="hl-2">KeysKey</span><span class="hl-1"> </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&quot;keyskey&quot;</span><span class="hl-1">;</span><br/><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">event</span><span class="hl-1"> = { </span><span class="hl-2">key:</span><span class="hl-1"> </span><span class="hl-3">&#39;A&#39;</span><span class="hl-1">, </span><span class="hl-2">metaKey:</span><span class="hl-1"> </span><span class="hl-5">false</span><span class="hl-1">, </span><span class="hl-2">shiftKey:</span><span class="hl-1"> </span><span class="hl-5">false</span><span class="hl-1">, </span><span class="hl-2">ctrlKey:</span><span class="hl-1"> </span><span class="hl-5">false</span><span class="hl-1"> };  </span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">result</span><span class="hl-1"> = </span><span class="hl-2">KeysKey</span><span class="hl-1">.</span><span class="hl-4">Or</span><span class="hl-1">(</span><span class="hl-2">event</span><span class="hl-1">, [</span><span class="hl-3">&quot;A&quot;</span><span class="hl-1">, </span><span class="hl-3">&quot;a&quot;</span><span class="hl-1">]);</span><br/><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-4">log</span><span class="hl-1">(</span><span class="hl-2">result</span><span class="hl-1">); </span><span class="hl-7">//  [ &#39;A&#39; ]</span><br/>
 </code><button>Copy</button></pre>
-<pre><code class="language-javascript"><span class="hl-0">import</span><span class="hl-1"> </span><span class="hl-2">KeysKey</span><span class="hl-1"> </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&quot;keyskey&quot;</span><span class="hl-1">;</span><br/><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-7">event</span><span class="hl-1"> = { </span><span class="hl-2">key:</span><span class="hl-1"> </span><span class="hl-3">&#39;A&#39;</span><span class="hl-1">, </span><span class="hl-2">metaKey:</span><span class="hl-1"> </span><span class="hl-5">true</span><span class="hl-1">, </span><span class="hl-2">shiftKey:</span><span class="hl-1"> </span><span class="hl-5">true</span><span class="hl-1">, </span><span class="hl-2">ctrlKey:</span><span class="hl-1"> </span><span class="hl-5">false</span><span class="hl-1"> };</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-7">result</span><span class="hl-1"> = </span><span class="hl-2">KeysKey</span><span class="hl-1">.</span><span class="hl-2">SpecialGroups</span><span class="hl-1">.</span><span class="hl-4">isMetaAndShift</span><span class="hl-1">(</span><span class="hl-2">event</span><span class="hl-1">);</span><br/><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-4">log</span><span class="hl-1">(</span><span class="hl-2">result</span><span class="hl-1">); </span><span class="hl-6">// [ &#39;Meta&#39;, &#39;Shift&#39; ]</span>
+<p>Also works as a variadic function:</p>
+<pre><code class="language-javascript"><span class="hl-0">import</span><span class="hl-1"> </span><span class="hl-2">KeysKey</span><span class="hl-1"> </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&quot;keyskey&quot;</span><span class="hl-1">;</span><br/><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">event</span><span class="hl-1"> = { </span><span class="hl-2">key:</span><span class="hl-1"> </span><span class="hl-3">&#39;1&#39;</span><span class="hl-1">, </span><span class="hl-2">metaKey:</span><span class="hl-1"> </span><span class="hl-5">true</span><span class="hl-1">, </span><span class="hl-2">shiftKey:</span><span class="hl-1"> </span><span class="hl-5">false</span><span class="hl-1">, </span><span class="hl-2">ctrlKey:</span><span class="hl-1"> </span><span class="hl-5">false</span><span class="hl-1"> };</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">result</span><span class="hl-1"> = </span><span class="hl-2">KeysKey</span><span class="hl-1">.</span><span class="hl-4">And</span><span class="hl-1">(</span><span class="hl-2">event</span><span class="hl-1">, </span><span class="hl-2">KeysKey</span><span class="hl-1">.</span><span class="hl-2">Number</span><span class="hl-1">.</span><span class="hl-2">One</span><span class="hl-1">, </span><span class="hl-2">KeysKey</span><span class="hl-1">.</span><span class="hl-2">ModifierKeys</span><span class="hl-1">.</span><span class="hl-2">Meta</span><span class="hl-1">);</span><br/><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-4">log</span><span class="hl-1">(</span><span class="hl-2">result</span><span class="hl-1">) </span><span class="hl-7">// [ &#39;1&#39;, &quot;Meta&quot; ]</span>
 </code><button>Copy</button></pre>
-<a id="md:full-documentation" class="tsd-anchor"></a><h2><a href="#md:full-documentation">Full Documentation</a></h2><p><a href="https://anderslatif.github.io/KeysKey/generated_docs/">Generated Docs from JS Docstrings</a></p>
-<a id="md:todo-create-tables-for-the-different-types-here" class="tsd-anchor"></a><h1><a href="#md:todo-create-tables-for-the-different-types-here">todo create tables for the different types here</a></h1><a id="md:issues" class="tsd-anchor"></a><h2><a href="#md:issues">Issues</a></h2><p>Feel free to create an issue. </p>
-<p><a href="https://github.com/anderslatif/KeysKey/issues">https://github.com/anderslatif/KeysKey/issues</a></p>
+<p>Example of a special key combo:</p>
+<pre><code class="language-javascript"><span class="hl-0">import</span><span class="hl-1"> </span><span class="hl-2">KeysKey</span><span class="hl-1"> </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&quot;keyskey&quot;</span><span class="hl-1">;</span><br/><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">event</span><span class="hl-1"> = { </span><span class="hl-2">key:</span><span class="hl-1"> </span><span class="hl-3">&#39;A&#39;</span><span class="hl-1">, </span><span class="hl-2">metaKey:</span><span class="hl-1"> </span><span class="hl-5">true</span><span class="hl-1">, </span><span class="hl-2">shiftKey:</span><span class="hl-1"> </span><span class="hl-5">true</span><span class="hl-1">, </span><span class="hl-2">ctrlKey:</span><span class="hl-1"> </span><span class="hl-5">false</span><span class="hl-1"> };</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">result</span><span class="hl-1"> = </span><span class="hl-2">KeysKey</span><span class="hl-1">.</span><span class="hl-2">SpecialCombos</span><span class="hl-1">.</span><span class="hl-4">isMetaAndShift</span><span class="hl-1">(</span><span class="hl-2">event</span><span class="hl-1">);</span><br/><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-4">log</span><span class="hl-1">(</span><span class="hl-2">result</span><span class="hl-1">); </span><span class="hl-7">// [ &#39;Meta&#39;, &#39;Shift&#39; ]</span>
+</code><button>Copy</button></pre>
+<p>Another example of a special key combo:</p>
+<pre><code class="language-javascript"><span class="hl-0">import</span><span class="hl-1"> </span><span class="hl-2">KeysKey</span><span class="hl-1"> </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&quot;keyskey&quot;</span><span class="hl-1">;</span><br/><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">event</span><span class="hl-1"> = { </span><span class="hl-2">key:</span><span class="hl-1"> </span><span class="hl-3">&#39;8&#39;</span><span class="hl-1">, </span><span class="hl-2">metaKey:</span><span class="hl-1"> </span><span class="hl-5">false</span><span class="hl-1">, </span><span class="hl-2">shiftKey:</span><span class="hl-1"> </span><span class="hl-5">false</span><span class="hl-1">, </span><span class="hl-2">ctrlKey:</span><span class="hl-1"> </span><span class="hl-5">false</span><span class="hl-1"> };</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">result</span><span class="hl-1"> = </span><span class="hl-2">KeysKey</span><span class="hl-1">.</span><span class="hl-2">SpecialCombos</span><span class="hl-1">.</span><span class="hl-4">isDigit</span><span class="hl-1">(</span><span class="hl-2">event</span><span class="hl-1">);</span><br/><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-4">log</span><span class="hl-1">(</span><span class="hl-2">result</span><span class="hl-1">); </span><span class="hl-7">// [ &#39;8&#39; ]</span>
+</code><button>Copy</button></pre>
+<a id="md:full-documentation" class="tsd-anchor"></a><h2><a href="#md:full-documentation">Full Documentation</a></h2><p><a href="https://anderslatif.github.io/KeysKey/generated_docs/">Generated Docs from JS Docstrings contain all the types.</a></p>
+<a id="md:library-methods" class="tsd-anchor"></a><h3><a href="#md:library-methods">Library Methods</a></h3><table>
+<thead>
+<tr>
+<th>Function Name</th>
+<th>Parameters</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>KeysKey.Is</code></td>
+<td><code>event</code>, <code>keys</code></td>
+<td>Checks if keys match the provided event.</td>
+</tr>
+<tr>
+<td><code>KeysKey.And</code></td>
+<td><code>event</code>, <code>keys</code></td>
+<td>Takes a single key string, array of keys or operates as a variadic function.</td>
+</tr>
+<tr>
+<td><code>KeysKey.Or</code></td>
+<td><code>event</code>, <code>keys</code></td>
+<td>True if at least one of the keys match the event.</td>
+</tr>
+</tbody></table>
+<p>Note on .And, .is, and .Or methods:</p>
+<p>These functions can take a single key string, an array of keys, or operate as a variadic function.
+The event parameter typically represents a keyboard event.
+The keys parameter can be a single key string, an array of key strings, or multiple separate key string arguments.
+The functions assess the keys against the event and return a boolean value based on the specific matching criteria (exact match, all keys match, or at least one key matches).</p>
+<a id="md:special-combos" class="tsd-anchor"></a><h3><a href="#md:special-combos">Special Combos</a></h3><p>These can be targetted through: <code>KeysKey.SpecialCombos.</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Function Name</th>
+<th>Parameters</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>isAltAndControl</code></td>
+<td><code>event: KeyEvent</code></td>
+<td>Returns <code>[&quot;Alt&quot;, &quot;Control&quot;]</code> if both Alt and Control keys are pressed, otherwise <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>isAltAndShift</code></td>
+<td><code>event: KeyEvent</code></td>
+<td>Returns <code>[&quot;Alt&quot;, &quot;Shift&quot;]</code> if both Alt and Shift keys are pressed, otherwise <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>isAltKey</code></td>
+<td><code>event: KeyEvent</code></td>
+<td>Returns <code>[&quot;Alt&quot;]</code> if Alt key is pressed, otherwise <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>isAltOrShift</code></td>
+<td><code>event: KeyEvent</code></td>
+<td>Returns <code>[&quot;Alt&quot;, &quot;Shift&quot;]</code> if either Alt or Shift key is pressed, otherwise <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>isControlAndShift</code></td>
+<td><code>event: KeyEvent</code></td>
+<td>Returns <code>[&quot;Control&quot;, &quot;Shift&quot;]</code> if both Control and Shift keys are pressed, otherwise <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>isControlOrShift</code></td>
+<td><code>event: KeyEvent</code></td>
+<td>Returns <code>[&quot;Control&quot;, &quot;Shift&quot;]</code> if either Control or Shift key is pressed, otherwise <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>isDelete</code></td>
+<td><code>event: KeyEvent</code></td>
+<td>Returns <code>[event.key]</code> if the Delete key is pressed (key code 46), otherwise <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>isDigit</code></td>
+<td><code>event: KeyEvent</code></td>
+<td>Returns <code>[event.key]</code> if a digit (0-9) is pressed, otherwise <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>isFunctionKey</code></td>
+<td><code>event: KeyEvent</code></td>
+<td>Returns <code>[event.key]</code> if a function key (F1-F12) is pressed, otherwise <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>isLetter</code></td>
+<td><code>event: KeyEvent</code></td>
+<td>Returns <code>[event.key]</code> if a letter (A-Z, a-z) is pressed, otherwise <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>isLowercaseLetter</code></td>
+<td><code>event: KeyEvent</code></td>
+<td>Returns <code>[event.key]</code> if a lowercase letter (a-z) is pressed, otherwise <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>isMediaControl</code></td>
+<td><code>event: KeyEvent</code></td>
+<td>Returns <code>[event.key]</code> if a media control key is pressed, otherwise <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>isMetaAndControl</code></td>
+<td><code>event: KeyEvent</code></td>
+<td>Returns <code>[&quot;Meta&quot;, &quot;Control&quot;]</code> if both Meta and Control keys are pressed, otherwise <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>isMetaAndShift</code></td>
+<td><code>event: KeyEvent</code></td>
+<td>Returns <code>[&quot;Meta&quot;, &quot;Shift&quot;]</code> if both Meta and Shift keys are pressed, otherwise <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>isMetaOrControl</code></td>
+<td><code>event: KeyEvent</code></td>
+<td>Returns <code>[&quot;Meta&quot;, &quot;Control&quot;]</code> if either Meta or Control key is pressed, otherwise <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>isMetaOrShift</code></td>
+<td><code>event: KeyEvent</code></td>
+<td>Returns <code>[&quot;Meta&quot;, &quot;Shift&quot;]</code> if either Meta or Shift key is pressed, otherwise <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>isModifier</code></td>
+<td><code>event: KeyEvent</code></td>
+<td>Returns <code>[event.key]</code> if any modifier key (Meta, Shift, Control, Alt) is pressed, otherwise <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>isNavigationKey</code></td>
+<td><code>event: KeyEvent</code></td>
+<td>Returns <code>[event.key]</code> if a navigation key is pressed, otherwise <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>isNonEnglishLetter</code></td>
+<td><code>event: KeyEvent</code></td>
+<td>Returns <code>[event.key]</code> if a non-English letter is pressed, otherwise <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>isSpecialCharacter</code></td>
+<td><code>event: KeyEvent</code></td>
+<td>Returns <code>[event.key]</code> if a special character is pressed, otherwise <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>isUppercaseLetter</code></td>
+<td><code>event: KeyEvent</code></td>
+<td>Returns <code>[event.key]</code> if an uppercase letter (A-Z) is pressed, otherwise <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>isWhitespace</code></td>
+<td><code>event: KeyEvent</code></td>
+<td>Returns <code>[event.key]</code> if a whitespace key (Space, Tab) is pressed, otherwise <code>undefined</code>.</td>
+</tr>
+</tbody></table>
+<a id="md:types" class="tsd-anchor"></a><h3><a href="#md:types">Types</a></h3><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Number</code></td>
+<td>Numbers</td>
+</tr>
+<tr>
+<td><code>Letter</code></td>
+<td>Alphabetic characters</td>
+</tr>
+<tr>
+<td><code>SpecialCharacter</code></td>
+<td>Non-alphanumeric characters (e.g., !, @, #, $)</td>
+</tr>
+<tr>
+<td><code>WhiteSpace</code></td>
+<td>Spaces and line control characters (Enter, Space, Tab)</td>
+</tr>
+<tr>
+<td><code>Multimedia</code></td>
+<td>Keys for media control (Play, Pause, Volume)</td>
+</tr>
+<tr>
+<td><code>Lock</code></td>
+<td>Toggle keys (CapsLock, NumLock, ScrollLock)</td>
+</tr>
+<tr>
+<td><code>Function</code></td>
+<td>Function keys (F1, F2, ..., F12)</td>
+</tr>
+<tr>
+<td><code>Navigation</code></td>
+<td>Arrow keys, Page Up/Down, Home, End</td>
+</tr>
+<tr>
+<td><code>Editing</code></td>
+<td>Insert, Delete, Backspace, etc.</td>
+</tr>
+<tr>
+<td><code>ModifierKeys</code></td>
+<td>Shift, Ctrl, Alt, Windows/Command keys</td>
+</tr>
+<tr>
+<td><code>SpecialKeysGroups</code></td>
+<td>Combination of all keys except Number and Letter</td>
+</tr>
+<tr>
+<td><code>AllKeys</code></td>
+<td>Includes all key types</td>
+</tr>
+</tbody></table>
+<a id="md:issues" class="tsd-anchor"></a><h2><a href="#md:issues">Issues</a></h2><p>Feel free to create an <a href="https://github.com/anderslatif/KeysKey/issues">issue</a>. </p>
 </div></div>
 <div class="col-sidebar">
 <div class="page-menu">
@@ -67,10 +280,12 @@
 <li><a href="#md:demo"><span>Demo</span></a></li>
 <li><a href="#md:documentation"><span>Documentation</span></a></li>
 <li><a href="#md:basic-usage"><span>Basic <wbr/>Usage</span></a></li>
-<li><a href="#md:full-documentation"><span>Full <wbr/>Documentation</span></a></li></ul></li>
-<li><a href="#md:todo-create-tables-for-the-different-types-here"><span>todo create tables for the different types here</span></a></li>
+<li><a href="#md:full-documentation"><span>Full <wbr/>Documentation</span></a></li>
 <li>
 <ul>
+<li><a href="#md:library-methods"><span>Library <wbr/>Methods</span></a></li>
+<li><a href="#md:special-combos"><span>Special <wbr/>Combos</span></a></li>
+<li><a href="#md:types"><span>Types</span></a></li></ul></li>
 <li><a href="#md:issues"><span>Issues</span></a></li></ul></li></ul></li></ul></div></details></div>
 <div class="site-menu">
 <nav class="tsd-navigation"><a href="index.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1"></use></svg><span>keyskey</span></a>

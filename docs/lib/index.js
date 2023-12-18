@@ -98,6 +98,20 @@ class KeysKey {
                     return undefined;
                 }
             }
+            else if (Object.values(KeysKey.ModifierKeys).includes(key)) {
+                if (event.ctrlKey) {
+                    matchedKeys.push("Control");
+                }
+                else if (event.altKey) {
+                    matchedKeys.push("Alt");
+                }
+                else if (event.metaKey) {
+                    matchedKeys.push("Meta");
+                }
+                else if (event.shiftKey) {
+                    matchedKeys.push("Shift");
+                }
+            }
             else if (Object.values(KeysKey.SpecialKeysGroups).includes(key)) {
                 matchedKeys.push(key);
             }
