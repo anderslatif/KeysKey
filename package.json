@@ -1,6 +1,6 @@
 {
   "name": "keyskey",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A keyboard key shortcut manager without fuss.",
   "type": "module",
   "main": "lib/index.js",
@@ -10,13 +10,14 @@
   ],
   "scripts": {
     "dev": "tsc -w & nodemon --watch lib --exec \"node lib/index.js\"",
-    "prepublish": "tsc",
     "test": "mocha 'tests/**/*test.js'",
+    "prepublish": "tsc",
     "coverage": "nyc npm test",
-    "generate:docs": "typedoc --entryPointStrategy expand --out docs ./src",
-    "run-examples-html": "npx http-server",
-    "pack": "npm run prepublish && npm pack && npm link keyskey",
-    "publish": "npm publish"
+    "add:library:to:ghpages": "npm run prepublish & cp -r lib docs/",
+    "generate:docs": "npm run add:library:to:ghpages & typedoc --entryPointStrategy expand --out docs/generated_docs ./src",
+    "run-examples-server": "parcel docs/index.html",
+    "npm:pack": "npm run prepublish && npm pack && npm link keyskey",
+    "npm:publish": "npm publish"
   },
   "repository": {
     "type": "git",
@@ -40,6 +41,7 @@
     "jsdom": "^22.1.0",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
+    "parcel-bundler": "^1.12.5",
     "ts-node": "^10.9.1",
     "typedoc": "^0.25.1",
     "typescript": "^4.9.5"
