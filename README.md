@@ -18,7 +18,7 @@ https://www.npmjs.com/package/keyskey
 
 **Use Cases**: For web games, HTML Canvas, and global key presses in Electron-like web-based software.
 
-**Current Issue**: Existing libraries are not user-friendly and do not produce readable code.
+**Current Issue**: At the time when I started to need this, existing libraries were not user-friendly and did not produce readable code.
 
 **Solution**: Provides a clear, readable method to detect specific key presses, simplifying cross-platform key event management.
 
@@ -55,7 +55,7 @@ const result = KeysKey.Is(event, "a");
 console.log(result); // // undefined
 ```
 
-Can give an array of keys:
+Can give an array of strings instead of KeysKey constants:
 
 ```javascript
 import KeysKey from "keyskey";
@@ -160,8 +160,8 @@ These can be targetted through: `KeysKey.SpecialCombos.`:
 | `Navigation`       | Arrow keys, Page Up/Down, Home, End              |
 | `Editing`          | Insert, Delete, Backspace, etc.                  |
 | `ModifierKeys`     | Shift, Ctrl, Alt, Windows/Command keys           |
-| `SpecialKeysGroups`| Combination of all keys except Number and Letter |
-| `AllKeys`          | Includes all key types                           |
+| `SpecialKeysGroups`| Combination of all above keys except Number and Letter |
+| `AllKeys`          | Includes all key types above                           |
 
 ## Issues
 
