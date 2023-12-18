@@ -11,8 +11,8 @@ import {
   EditingKeysEnum,
   ModifierKeysEnum,
   SpecialKeysGroup,
-  AllKeysGroup } from "./enums.js";
-import { unpackNestedArrays, getUniqueValues } from "./util.js";
+  AllKeysGroup } from "./types.js";
+import { unpackNestedArrays, getUniqueValues, countElementsInNestedArray } from "./util.js";
 
 
 /**
@@ -53,22 +53,13 @@ class KeysKey {
 
   /**
    * Checks if keys match the provided event.
+   * Basically just a wrapper for the .And method but it's a more intuitive name when checking for a single key.
    * @param {KeyEvent} event - The DOM event that was triggered.
    * @param {Array<KeysKey>} keys - A list of keys to check against the event. Can be provided as an array, KeysKeys groups (And / Or) or just lose arguments (will be interpreted as And).
    * @returns {Array<string> | undefined} - Returns an array of keys that matched the event. If no key matched, returns undefined.
    */
   static Is(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] | undefined {
-    if (!Array.isArray(keys)) throw new Error(`The second argument (keys) must be an array of strings or KeysKey constants.`);
-
-    let matchingKeys: KeysKey[] = [];
-
-    for (const keyGroup of keys) {
-      if (Array.isArray(keyGroup)) { 
-        matchingKeys = this.And(event, ...keyGroup);
-      } 
-
-      return getUniqueValues(matchingKeys)?.length === keys.length ? matchingKeys : undefined;
-    }
+    return this.And(event, keys);
   }
 
   /**
@@ -78,9 +69,11 @@ class KeysKey {
    * @returns {Array<string> | undefined} - Returns an array of keys that matched the event. If no key matched, returns undefined.
    */
   public static And(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] | undefined {
-    const matchedKeys = this.matchEventWithKeys(event, keys);
-    
-    const same = getUniqueValues(matchedKeys).length === keys.length;
+    if (!event) throw new Error("No event provided as the first parameter.");
+
+    const matchedKeys = getUniqueValues(this.matchEventWithKeys(event, keys));
+
+    const same = matchedKeys.length === countElementsInNestedArray(keys);
     return same ? matchedKeys : undefined;
   }
 
@@ -92,9 +85,9 @@ class KeysKey {
    */
   public static OptimizedAnd(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] | undefined {
     this.optimizedAndMode = true;
-    const matchedKeys = this.matchEventWithKeys(event, ...keys);
+    const matchedKeys = getUniqueValues(this.matchEventWithKeys(event, ...keys));
 
-    const same = getUniqueValues(matchedKeys).length === keys.length;
+    const same = matchedKeys.length === countElementsInNestedArray(keys);
     
     return same ? matchedKeys : undefined;
   }
@@ -106,10 +99,11 @@ class KeysKey {
    * @returns {Array<string> | undefined} - Returns an array of keys that matched the event. If no key matched, returns undefined.
    */
   public static Or(event: KeyEvent, ...keys:  KeysKey[]): KeysKey[] | undefined {
+    if (!event) throw new Error("No event provided as the first parameter.");
 
-    const matchedKeys = this.matchEventWithKeys(event, ...keys);
+    const matchedKeys = getUniqueValues(this.matchEventWithKeys(event, ...keys));
     
-    const isSame = getUniqueValues(matchedKeys).length === keys.length;
+    const isSame = matchedKeys.length === countElementsInNestedArray(keys);
     const isIncludedIn = keys.map(key => matchedKeys.includes(key)).includes(true);
     
     return isSame || isIncludedIn ? matchedKeys : undefined;
@@ -241,6 +235,30 @@ class KeysKey {
         } else if (this.optimizedAndMode) {
           return undefined;
         }
+      } else if (Object.values(KeysKey.ModifierKeys).includes(key as ModifierKeysEnum)) {
+        console.log("Modifier key", key)
+        // 1. First make sure to iterate over the modifier keys to check if any of them were pressed
+        if (key === "Ctrl" && event.ctrlKey) {
+          matchedKeys.push("Ctrl");
+        } else if (key === "Alt" && event.altKey) {
+          matchedKeys.push("Alt");
+        } else if (key === "Meta" && event.metaKey) {
+          matchedKeys.push("Meta");
+        } else if (key === "Shift" && event.shiftKey) {
+          matchedKeys.push("Shift");
+        }
+        // 2. Before considering that the modifier keys is held down
+        if (event.key === "Ctrl" || event.ctrlKey) {
+          matchedKeys.push("Ctrl");
+        } else if (event.key === "Alt" || event.altKey) {
+          matchedKeys.push("Alt");
+        } else if (event.key === "Meta" || event.metaKey) {
+          matchedKeys.push("Meta");
+        } else if (event.key === "Shift" || event.shiftKey) {
+          console.log(key)
+          matchedKeys.push("Shift");
+        }
+
       } else if (Object.values(KeysKey.SpecialKeysGroups).includes(key as any)) {
         matchedKeys.push(key);
       } else if (Object.values(KeysKey.AllKeys).includes(key as any)) {

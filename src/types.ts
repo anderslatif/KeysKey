@@ -10,6 +10,7 @@ export type KeyEventEnum = {
 };
 
 export enum NumberKeysEnum {
+  Zero = '0',
   One = '1',
   Two = '2',
   Three = '3',
@@ -169,7 +170,7 @@ export enum EditingKeysEnum {
 
 export enum ModifierKeysEnum {
   Alt = 'Alt',
-  Control = 'Ctrl',
+  Ctrl = 'Ctrl',
   Meta = 'Meta',
   Option = 'Option',
   Shift = 'Shift',

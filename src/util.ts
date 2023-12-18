@@ -14,3 +14,8 @@ export function unpackNestedArrays(list: KeysKey[]): KeysKey[] {
 export function getUniqueValues(list: KeysKey[]): KeysKey[] {
   return [...new Set(list)];
 }
+
+export function countElementsInNestedArray(arr = []) {
+  return arr.reduce((count, element) => 
+      count + (Array.isArray(element) ? countElementsInNestedArray(element) : 1), 0);
+}
