@@ -1,67 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-        .header-container {
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            text-align: center;
-            gap: 10px;
-            flex-wrap: wrap; 
-        }
+    <link rel="stylesheet" href="./index.css">
+    <!-- Include CodeMirror CSS -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css"> -->
 
-        h1 {
-            margin: 0;
-            flex: 1; 
-        }
+    <!-- <link rel="icon" type="image/png" href="https://github.com/anderslatif/KeysKey/blob/main/KeysKeyLogo.png"> -->
 
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Creates a responsive grid */
-        }
-
-        .grid-item {
-            background-color: #f2f2f2;
-            text-align: center;
-            padding: 20px;
-            border: 1px solid #ccc; 
-            transition: background-color 0.3s; /* Smooth transition for background color change */
-        }
-
-        .grid-item-active {
-            background-color: #00e64d;
-        }
-    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keys Key Examples</title>
 </head>
 <body>
     <div class="header-container">
-        <img src="https://github.com/anderslatif/KeysKey/blob/main/KeysKeyLogo.png" alt="logo" width="200"/>
+        
+        <!-- <img src="https://github.com/anderslatif/KeysKey/blob/main/KeysKeyLogo.png" alt="logo" width="200"/> -->
         <h1>Keys Key Examples. Press any keyboard key or combo of keyboard keys.</h1>
     </div>
       
 
     <div class="grid-container">
-        <div class="grid-item A">A</div>
-        <div class="grid-item B">B</div>
-        <div class="grid-item C">C</div>
-        <div class="grid-item a">a</div>
-        <div class="grid-item b">b</div>
-        <div class="grid-item c">c</div>
-        <div class="grid-item 1">1</div>
-        <div class="grid-item 2">2</div>
-        <div class="grid-item 3">3</div>
-      </div>
+        <div id="A" class="grid-item">A</div>
+        <div id="B" class="grid-item">B</div>
+        <div id="C" class="grid-item">C</div>
+        <div id="a" class="grid-item">a</div>
+        <div id="b" class="grid-item">b</div>
+        <div id="c" class="grid-item">c</div>
+        <div id="1" class="grid-item">1</div>
+        <div id="2" class="grid-item">2</div>
+        <div id="3" class="grid-item">3</div>
+    </div>
 
-    <script type="module">
-        // Remember that this is the path to lib embedded in the GH-page folder
-        // and not the lib that is compiled by the build script.
-        import KeysKey from "./lib/index.js";
+    
 
-
-    </script>
+    <div class="center-container">
+        <h2><a href="https://anderslatif.github.io/KeysKey/generated_docs/">Documentation</a></h2>
+        <h2>
+            <span style="color: #6a5acd;">import</span>
+            <span style="color: #D73A49;">KeysKey</span>
+            <span style="color: #455564;">from</span>
+            <span style="color: #0366D6;">"keyskey"</span>;
+        </h2>
+        <p>Events will be fired and populated in your evaluated code. You can now just use KeysKey below:</p>
+    </div>
+    <!-- <textarea id="codeBox"></textarea> -->
+    
+    <script src="./index.js" type="module"></script>
+    
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script> -->
+    <!-- <script src="./highlighter.js"></script> -->
 </body>
 </html>

@@ -9,6 +9,7 @@ export function unpackNestedArrays(list) {
         return acc;
     }, []);
 }
-function isDigit() {
+export function getUniqueValues(list) {
+    return [...new Set(list)];
 }
 //# sourceMappingURL=util.js.map

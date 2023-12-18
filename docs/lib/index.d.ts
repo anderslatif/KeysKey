@@ -1,11 +1,10 @@
-import { KeyEventEnum as KeyEvent, NumberEnum, UppercaseLetterEnum, LowercaseLetterEnum, SpecialKeysEnum } from "../src/enums.js";
+import { KeyEventEnum as KeyEvent, NumberEnum, LetterEnum, SpecialKeysEnum } from "./enums.js";
 /**
  * This is the main class of the library. It contains all the methods to check if a key event matches a key or a combination of keys.
  * */
 declare class KeysKey {
     static Number: typeof NumberEnum;
-    static UppercaseLetter: typeof UppercaseLetterEnum;
-    static LowercaseLetter: typeof LowercaseLetterEnum;
+    static Letter: typeof LetterEnum;
     static SpecialKeys: typeof SpecialKeysEnum;
     static debugMode: boolean;
     static optimizedAndMode: boolean;
@@ -20,31 +19,31 @@ declare class KeysKey {
     /**
      * Checks if keys match the provided event.
      * @param {KeyEvent} event - The DOM event that was triggered.
-     *  @param {Array<KeysKey>} keys - A list of keys to check against the event. Can be provided as an array, KeysKeys groups (And / Or) or just lose arguments (will be interpreted as And).
-     * @returns {Array<string> | null} - Returns an array of keys that matched the event. If no key matched, returns null.
+     * @param {Array<KeysKey>} keys - A list of keys to check against the event. Can be provided as an array, KeysKeys groups (And / Or) or just lose arguments (will be interpreted as And).
+     * @returns {Array<string> | undefined} - Returns an array of keys that matched the event. If no key matched, returns undefined.
      */
-    static is(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] | null;
+    static is(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] | undefined;
     /**
      * Checks if all the keys match the provided event.
      * @param {KeyEvent} event - The DOM event that was triggered.
-     *  @param {Array<KeysKey>} keys - A list of keys to check against the event. Can be provided as an array, KeysKeys groups (And / Or) or just lose arguments (will be interpreted as And).
-     * @returns {Array<string> | null} - Returns an array of keys that matched the event. If no key matched, returns null.
+     * @param {Array<KeysKey>} keys - A list of keys to check against the event. Can be provided as an array, KeysKeys groups (And / Or) or just lose arguments (will be interpreted as And).
+     * @returns {Array<string> | undefined} - Returns an array of keys that matched the event. If no key matched, returns undefined.
      */
-    static And(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] | null;
+    static And(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] | undefined;
     /**
    * Checks if keys match the provided event. If one key doesn't match it immediately terminates and does nto provide a full list of matches. This is faster than the And method.
    * @param {KeyEvent} event - The DOM event that was triggered.
-   *  @param {Array<KeysKey>} keys - A list of keys to check against the event. Can be provided as an array, KeysKeys groups (And / Or) or just lose arguments (will be interpreted as And).
-   * @returns {Array<string> | null} - Returns an array of keys that matched the event. Returns null immediately if one key doesn't match.
+   * @param {Array<KeysKey>} keys - A list of keys to check against the event. Can be provided as an array, KeysKeys groups (And / Or) or just lose arguments (will be interpreted as And).
+   * @returns {Array<string> | undefined} - Returns an array of keys that matched the event. Returns undefined immediately if one key doesn't match.
    */
-    static OptimizedAnd(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] | null;
+    static OptimizedAnd(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] | undefined;
     /**
    * Checks if one of the keys matches the provided event.
    * @param {KeyEvent} event - The DOM event that was triggered.
-   *  @param {Array<KeysKey>} keys - A list of keys to check against the event. Can be provided as an array, KeysKeys groups (And / Or) or just lose arguments (will be interpreted as And).
-   * @returns {Array<string> | null} - Returns an array of keys that matched the event. If no key matched, returns null.
+   * @param {Array<KeysKey>} keys - A list of keys to check against the event. Can be provided as an array, KeysKeys groups (And / Or) or just lose arguments (will be interpreted as And).
+   * @returns {Array<string> | undefined} - Returns an array of keys that matched the event. If no key matched, returns undefined.
    */
-    static Or(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] | null;
+    static Or(event: KeyEvent, ...keys: KeysKey[]): KeysKey[] | undefined;
     /**
      * A collection of functions within the `KeysKey` object that assess special key group combinations in key events.
      *
@@ -56,20 +55,20 @@ declare class KeysKey {
      * `KeysKey.SpecialGroups.isMetaAndShift(event)`
      *
      * Methods:
-    * - `isDigit(event: KeyEvent): KeysKey[] | null`
-    *   Returns an array of `KeysKey` if the key event corresponds to a digit, or null otherwise.
+    * - `isDigit(event: KeyEvent): KeysKey[] | undefined`
+    *   Returns an array of `KeysKey` if the key event corresponds to a digit, or undefined otherwise.
     *
-    * - `isLetter(event: KeyEvent): KeysKey[] | null`
-    *   Returns an array of `KeysKey` if the key event corresponds to a letter, or null otherwise.
+    * - `isLetter(event: KeyEvent): KeysKey[] | undefined`
+    *   Returns an array of `KeysKey` if the key event corresponds to a letter, or undefined otherwise.
     *
-    * - `isLowerCase(event: KeyEvent): KeysKey[] | null`
-    *   Returns an array of `KeysKey` if the key event corresponds to a lowercase letter, or null otherwise.
+    * - `isLowerCase(event: KeyEvent): KeysKey[] | undefined`
+    *   Returns an array of `KeysKey` if the key event corresponds to a lowercase letter, or undefined otherwise.
     *
-    * - `isUppercaseLetter(event: KeyEvent): KeysKey[] | null`
-    *   Returns an array of `KeysKey` if the key event corresponds to an uppercase letter, or null otherwise.
+    * - `isUppercaseLetter(event: KeyEvent): KeysKey[] | undefined`
+    *   Returns an array of `KeysKey` if the key event corresponds to an uppercase letter, or undefined otherwise.
     *
-    * - `isNonEnglishLetter(event: KeyEvent): KeysKey[] | null`
-    *   Returns an array of `KeysKey` if the key event corresponds to a non-English letter, or null otherwise.
+    * - `isNonEnglishLetter(event: KeyEvent): KeysKey[] | undefined`
+    *   Returns an array of `KeysKey` if the key event corresponds to a non-English letter, or undefined otherwise.
     *
     * - `isMetaAndShift(event: KeyEvent): KeysKey
      *
@@ -96,7 +95,7 @@ declare class KeysKey {
         isMetaOrControl: (event: KeyEvent) => string[];
         isMetaOrShift: (event: KeyEvent) => string[];
         isModifier: (event: KeyEvent) => string[];
-        isNavigationKey: (event: KeyEvent) => string[] | null;
+        isNavigationKey: (event: KeyEvent) => string[] | undefined;
         isNonEnglishLetter: (event: KeyEvent) => string[];
         isSpecialCharacter: (event: KeyEvent) => string[];
         isUppercaseLetter: (event: KeyEvent) => string[];
