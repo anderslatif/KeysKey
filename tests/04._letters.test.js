@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import KeysKey from "../lib/index.js";
 
 
-describe('Numbers unequality', () => {
+describe('Testing letters', () => {
 
   it('should return the uppercase letter that was fired', () => {
     const event1 = { key: 'A', metaKey: false, shiftKey: false, ctrlKey: false };

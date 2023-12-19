@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import KeysKey from "../lib/index.js";
 
 
-describe('Numbers unequality', () => {
+describe('Testing Numbers', () => {
   it('should return undefined for the numbers not matching', () => {
     // notice that all the keys in the event are shifted from the expected keys
     const event0 = { key: '1', metaKey: false, shiftKey: false, ctrlKey: false };

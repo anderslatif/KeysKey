@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import KeysKey from "../lib/index.js";
 
 
-describe('Numbers unequality', () => {
+describe('Testing Modifier keys', () => {
 
   // Ctrl
   it('should return Ctrl when Ctrl pressed', () => {

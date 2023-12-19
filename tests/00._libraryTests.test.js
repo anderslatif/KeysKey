@@ -1,4 +1,4 @@
-/* import { expect } from 'chai';
+import { expect } from 'chai';
 import KeysKey from "../lib/index.js";
 
 
@@ -35,4 +35,3 @@ describe('Testing the library', () => {
     });
 
 });
- */
