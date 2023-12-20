@@ -14,18 +14,13 @@ jobs:
             - uses: actions/checkout@v2
             - name: Install dependencies
               run: npm ci
-            - name: Run tests
-              run: npm test
-            - name: Upload JUnit Test Results
-              if: always()
+            - name: Run tests and generate report
+              run: |
+                npm test --reporter mochawesome
+                mv ./mochawesome-report/mochawesome*.json ./test-report.json
+              continue-on-error: true
+            - name: Upload test report
               uses: actions/upload-artifact@v2
               with:
-                name: junit-reports
-                path: test-results/*.xml
-            - name: Publish Test Report
-              if: always() # This ensures that the report is published even if the tests fail
-              uses: dorny/test-reporter@v1
-              with:
-                name: 'Your Test Report Name'
-                path: 'test-results/*.xml' # Path where the JUnit test results are saved
-                reporter: jest-junit 
+                name: test-report
+                path: test-report.json

@@ -36,12 +36,6 @@
     "url": "https://github.com/anderslatif/KeysKey/issues"
   },
   "homepage": "https://github.com/anderslatif/KeysKey#readme",
-  "jest": {
-    "reporters": [
-      "default",
-      ["jest-junit", { "outputDirectory": "test-results", "outputName": "junit.xml" }]
-    ]
-  },
   "devDependencies": {
     "@types/chai": "^4.3.6",
     "@types/mocha": "^10.0.2",
