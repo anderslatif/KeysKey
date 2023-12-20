@@ -16,3 +16,10 @@ jobs:
               run: npm ci
             - name: Run tests
               run: npm test
+            - name: Publish Test Report
+              if: always() # This ensures that the report is published even if the tests fail
+              uses: dorny/test-reporter@v1
+              with:
+                name: 'Your Test Report Name'
+                path: 'test-results/*.xml' # Path where the JUnit test results are saved
+                reporter: 'junit' # Type of the test reporter
