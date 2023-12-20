@@ -170,7 +170,7 @@ export enum EditingKeysEnum {
 
 export enum ModifierKeysEnum {
   Alt = 'Alt',
-  Ctrl = 'Ctrl',
+  Control = 'Control',
   Meta = 'Meta',
   Option = 'Option',
   Shift = 'Shift',

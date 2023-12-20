@@ -13,7 +13,7 @@ import {
   SpecialKeysGroup,
   AllKeysGroup } from "./types.js";
 import { unpackNestedArrays, getUniqueValues, countElementsInNestedArray } from "./util.js";
-
+import { SpecialCombos } from "./specialCombos.js";
 
 /**
  * This is the main class of the library. It contains all the methods to check if a key event matches a key or a combination of keys. 
@@ -109,98 +109,7 @@ class KeysKey {
     return isSame || isIncludedIn ? matchedKeys : undefined;
   }
 
-  /**
-   * A collection of functions within the `KeysKey` object that assess special key group combinations in key events.
-   *
-   * The `SpecialCombos` object contains various methods to check for specific combinations of keys being pressed 
-   * during a `KeyEvent`. Each method takes a `KeyEvent` as an argument and returns a boolean indicating whether 
-   * the specific key combination is active.
-   *
-   * Usage Example:
-   * `KeysKey.SpecialCombos.isMetaAndShift(event)`
-   *
-   * Methods:
-  * - `isDigit(event: KeyEvent): KeysKey[] | undefined`
-  *   Returns an array of `KeysKey` if the key event corresponds to a digit, or undefined otherwise.
-  *
-  * - `isLetter(event: KeyEvent): KeysKey[] | undefined`
-  *   Returns an array of `KeysKey` if the key event corresponds to a letter, or undefined otherwise.
-  *
-  * - `isLowerCase(event: KeyEvent): KeysKey[] | undefined`
-  *   Returns an array of `KeysKey` if the key event corresponds to a lowercase letter, or undefined otherwise.
-  *
-  * - `isUppercaseLetter(event: KeyEvent): KeysKey[] | undefined`
-  *   Returns an array of `KeysKey` if the key event corresponds to an uppercase letter, or undefined otherwise.
-  *
-  * - `isNonEnglishLetter(event: KeyEvent): KeysKey[] | undefined`
-  *   Returns an array of `KeysKey` if the key event corresponds to a non-English letter, or undefined otherwise.
-  *
-  * - `isMetaAndShift(event: KeyEvent): KeysKey
-   * 
-   * Additional methods follow a similar pattern, analyzing different key combinations.
-   */
-  public static SpecialCombos = {
-    isAltAndControl: (event: KeyEvent) => event.altKey && event.ctrlKey ? ["Alt", "Control"] : undefined,
-    isAltAndShift: (event: KeyEvent) => event.altKey && event.shiftKey ? ["Alt", "Shift"] : undefined,
-    isAltKey: (event: KeyEvent) => event.altKey ? ["Alt"] : undefined,
-    isAltOrShift: (event: KeyEvent) => event.altKey || event.shiftKey ? ["Alt", "Shift"] : undefined,
-    isControlAndShift: (event: KeyEvent) => event.ctrlKey && event.shiftKey ? ["Control", "Shift"] : undefined,
-    isControlOrShift: (event: KeyEvent) => event.ctrlKey || event.shiftKey ? ["Control", "Shift"] : undefined,
-    isDelete: (event: KeyEvent) => event.keyCode === 46 ? [event.key] : undefined,
-    isDigit: (event: KeyEvent) => {
-      const keyString: string = "" + event.key;
-      const keyCode = keyString.charCodeAt(0);
-      if (keyCode >= 48 && keyCode <= 57) { // ASCII values for '0' to '9'
-          return [event.key];
-      }
-    },
-    isFunctionKey: (event: KeyEvent) => event.keyCode >= 112 && event.keyCode <= 123 ? [event.key] : undefined,
-    isLetter: (event: KeyEvent) => {
-      const keyString: string = "" + event.key;
-      const keyCode = keyString.charCodeAt(0);
-      if ((keyCode >= 65 && keyCode <= 90) || (keyCode >= 97 && keyCode <= 122)) {
-          return [event.key];
-      }
-    },
-    isLowercaseLetter: (event: KeyEvent) => {
-      const keyString: string = "" + event.key;
-      const keyCode = keyString.charCodeAt(0);
-      if (keyCode >= 97 && keyCode <= 122) { 
-          return [event.key];
-      }
-    },
-    isMediaControl: (event: KeyEvent) => event.keyCode >= 166 && event.keyCode <= 183 ? [event.key] : undefined,
-    isMetaAndControl: (event: KeyEvent) => event.metaKey && event.ctrlKey ? ["Meta", "Control"] : undefined,
-    isMetaAndShift: (event: KeyEvent) => event.metaKey && event.shiftKey ? ["Meta", "Shift"] : undefined,
-    isMetaOrControl: (event: KeyEvent) => event.metaKey || event.ctrlKey ? ["Meta", "Control"] : undefined,
-    isMetaOrShift: (event: KeyEvent) => event.metaKey || event.shiftKey ? ["Meta", "Shift"] : undefined,
-    isModifier: (event: KeyEvent) => event.metaKey || event.shiftKey || event.ctrlKey || event.altKey ? [event.key] : undefined,
-    isNavigationKey: (event: KeyEvent): string[] | undefined => event.keyCode >= 33 && event.keyCode <= 40 ? [event.key] : undefined,
-    isNonEnglishLetter: (event: KeyEvent) => {
-      const keyString: string = "" + event.key;
-      if (/[^\x00-\x7F]/.test(keyString)) {
-        return [event.key];
-      }
-      return undefined;
-    },
-    isSpecialCharacter: (event: KeyEvent) => {
-      const keyString: string = "" + event.key;
-      const keyCode = keyString.charCodeAt(0);
-      if ((keyCode >= 33 && keyCode <= 47) || (keyCode >= 58 && keyCode <= 64) || 
-        (keyCode >= 91 && keyCode <= 96) || (keyCode >= 123 && keyCode <= 126)) { 
-          return [event.key];
-      }
-      return undefined;
-    },
-    isUppercaseLetter: (event: KeyEvent) => {
-      const keyString: string = "" + event.key;
-      const keyCode = keyString.charCodeAt(0);
-      if (keyCode >= 65 && keyCode <= 90) { 
-          return [event.key];
-      }
-    },
-    isWhitespace: (event: KeyEvent) => event.keyCode === 32 || event.keyCode === 9 ? [event.key] : undefined,
-  };
+  public static SpecialCombos = SpecialCombos;
 
   /**
    * For internal use by the exposed methods. Checks if a list of keys match the provided event.
@@ -238,8 +147,8 @@ class KeysKey {
       } else if (Object.values(KeysKey.ModifierKeys).includes(key as ModifierKeysEnum)) {
         console.log("Modifier key", key)
         // 1. First make sure to iterate over the modifier keys to check if any of them were pressed
-        if (key === "Ctrl" && event.ctrlKey) {
-          matchedKeys.push("Ctrl");
+        if (key === "Control" && event.ctrlKey) {
+          matchedKeys.push("Control");
         } else if (key === "Alt" && event.altKey) {
           matchedKeys.push("Alt");
         } else if (key === "Meta" && event.metaKey) {
@@ -248,8 +157,8 @@ class KeysKey {
           matchedKeys.push("Shift");
         }
         // 2. Before considering that the modifier keys is held down
-        if (event.key === "Ctrl" || event.ctrlKey) {
-          matchedKeys.push("Ctrl");
+        if (event.key === "Control" || event.ctrlKey) {
+          matchedKeys.push("Control");
         } else if (event.key === "Alt" || event.altKey) {
           matchedKeys.push("Alt");
         } else if (event.key === "Meta" || event.metaKey) {
