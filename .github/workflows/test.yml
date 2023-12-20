@@ -22,4 +22,3 @@ jobs:
               with:
                 name: 'Your Test Report Name'
                 path: 'test-results/*.xml' # Path where the JUnit test results are saved
-                reporter: 'junit' # Type of the test reporter
