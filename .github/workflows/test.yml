@@ -21,5 +21,5 @@ jobs:
               uses: dorny/test-reporter@v1
               with:
                 name: 'Your Test Report Name'
-                path: 'test-results/*.xml' # Path where the JUnit test results are saved
+                path: './test-results/*.xml' # Path where the JUnit test results are saved
                 reporter: jest-junit 
