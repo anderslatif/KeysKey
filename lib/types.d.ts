@@ -159,14 +159,14 @@ export declare enum EditingKeysEnum {
 }
 export declare enum ModifierKeysEnum {
     Alt = "Alt",
-    Ctrl = "Ctrl",
+    Control = "Control",
     Meta = "Meta",
     Option = "Option",
     Shift = "Shift"
 }
 export declare const SpecialKeysGroup: {
     readonly Alt: ModifierKeysEnum.Alt;
-    readonly Ctrl: ModifierKeysEnum.Ctrl;
+    readonly Control: ModifierKeysEnum.Control;
     readonly Meta: ModifierKeysEnum.Meta;
     readonly Option: ModifierKeysEnum.Option;
     readonly Shift: ModifierKeysEnum.Shift;
@@ -241,7 +241,7 @@ export declare const SpecialKeysGroup: {
 };
 export declare const AllKeysGroup: {
     readonly Alt: ModifierKeysEnum.Alt;
-    readonly Ctrl: ModifierKeysEnum.Ctrl;
+    readonly Control: ModifierKeysEnum.Control;
     readonly Meta: ModifierKeysEnum.Meta;
     readonly Option: ModifierKeysEnum.Option;
     readonly Shift: ModifierKeysEnum.Shift;
@@ -376,4 +376,4 @@ export declare const AllKeysGroup: {
     readonly Eight: NumberKeysEnum.Eight;
     readonly Nine: NumberKeysEnum.Nine;
 };
-//# sourceMappingURL=enums.d.ts.map
+//# sourceMappingURL=types.d.ts.map
