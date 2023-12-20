@@ -24,6 +24,11 @@ jobs:
               with:
                 name: test-report
                 path: test-report.json
+            - name: Debug file existence
+              run: |
+                  ls -l
+                  find . -type f
+              
             - name: Create test result check
               id: test-result
               uses: actions/github-script@v7
