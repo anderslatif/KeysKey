@@ -13,9 +13,10 @@
     "test": "mocha 'tests/**/*test.js'",
     "test:watch": "nodemon --config ./tests/nodemon_testing.json",
     "prepublish": "tsc",
-    "coverage": "nyc npm test",
+    "coverage": "nyc --include 'lib/**' npm test",
+    "coverage:report": "npx nyc report --reporter=html --report-dir ./docs/coverage_report",
     "add:library:to:ghpages": "npm run prepublish & cp -r lib docs/",
-    "generate:docs": "npm run add:library:to:ghpages & typedoc --entryPointStrategy expand --out docs/generated_docs ./src",
+    "generate:docs": "npm run coverage:report && npm run add:library:to:ghpages & typedoc --entryPointStrategy expand --out docs/generated_docs ./src",
     "run-examples-server": "parcel docs/index.html",
     "npm:pack": "npm run prepublish && npm pack && npm link keyskey",
     "npm:publish": "npm publish"
@@ -35,10 +36,17 @@
     "url": "https://github.com/anderslatif/KeysKey/issues"
   },
   "homepage": "https://github.com/anderslatif/KeysKey#readme",
+  "jest": {
+    "reporters": [
+      "default",
+      ["jest-junit", { "outputDirectory": "./test-results", "outputName": "junit.xml" }]
+    ]
+  },
   "devDependencies": {
     "@types/chai": "^4.3.6",
     "@types/mocha": "^10.0.2",
     "chai": "^4.3.10",
+    "jest-junit": "^16.0.0",
     "jsdom": "^22.1.0",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
