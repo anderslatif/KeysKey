@@ -6,28 +6,28 @@ describe('Testing Modifier keys', () => {
 
   // Ctrl
   it('should return Ctrl when Ctrl pressed', () => {
-    const event = { key: 'Ctrl', metaKey: false, shiftKey: false, ctrlKey: false };
-    const result = KeysKey.Is(event, KeysKey.ModifierKeys.Ctrl);
-    expect(result).to.deep.equal(['Ctrl']);
+    const event = { key: 'Control', metaKey: false, shiftKey: false, ctrlKey: false };
+    const result = KeysKey.Is(event, KeysKey.ModifierKeys.Control);
+    expect(result).to.deep.equal(['Control']);
   });
 
   it('should return Ctrl when Ctrl held', () => {
     const event = { key: 'A', metaKey: false, shiftKey: false, ctrlKey: true };
-    const result = KeysKey.Is(event, KeysKey.ModifierKeys.Ctrl);
-    expect(result).to.deep.equal(['Ctrl']);
+    const result = KeysKey.Is(event, KeysKey.ModifierKeys.Control);
+    expect(result).to.deep.equal(['Control']);
   });
 
   it('should return Ctrl and other in Or when Ctrl pressed', () => {
-    const event = { key: 'Ctrl', metaKey: false, shiftKey: true, ctrlKey: false };
-    const result = KeysKey.Or(event, KeysKey.ModifierKeys.Ctrl, KeysKey.ModifierKeys.Shift);
-    expect(result).to.deep.equal(['Ctrl', 'Shift']);
+    const event = { key: 'Control', metaKey: false, shiftKey: true, ctrlKey: false };
+    const result = KeysKey.Or(event, KeysKey.ModifierKeys.Control, KeysKey.ModifierKeys.Shift);
+    expect(result).to.deep.equal(['Control', 'Shift']);
 
   });
 
   it('should not return Ctrl in Or when other key not held', () => {
-    const event = { key: 'Ctrl', metaKey: false, shiftKey: false, ctrlKey: false };
-    const result = KeysKey.Or(event, KeysKey.ModifierKeys.Ctrl, KeysKey.ModifierKeys.Shift);
-    expect(result).to.deep.equal(['Ctrl']);
+    const event = { key: 'Control', metaKey: false, shiftKey: false, ctrlKey: false };
+    const result = KeysKey.Or(event, KeysKey.ModifierKeys.Control, KeysKey.ModifierKeys.Shift);
+    expect(result).to.deep.equal(['Control']);
   });
 
   it('should return Alt when Alt pressed', () => {
@@ -64,13 +64,13 @@ describe('Testing Modifier keys', () => {
 
   it('should return Meta and other in Or when Meta pressed', () => {
     const event = { key: 'Meta', metaKey: true, shiftKey: false, ctrlKey: true };
-    const result = KeysKey.Or(event, KeysKey.ModifierKeys.Meta, KeysKey.ModifierKeys.Ctrl);
-    expect(result).to.have.members(['Meta', 'Ctrl']);
+    const result = KeysKey.Or(event, KeysKey.ModifierKeys.Meta, KeysKey.ModifierKeys.Control);
+    expect(result).to.have.members(['Meta', 'Control']);
   });
   
   it('should not return Meta in Or when other key not held', () => {
     const event = { key: 'Meta', metaKey: true, shiftKey: false, ctrlKey: false };
-    const result = KeysKey.Or(event, KeysKey.ModifierKeys.Meta, KeysKey.ModifierKeys.Ctrl);
+    const result = KeysKey.Or(event, KeysKey.ModifierKeys.Meta, KeysKey.ModifierKeys.Control);
     expect(result).to.deep.equal(['Meta']);
   });
   
@@ -96,13 +96,13 @@ describe('Testing Modifier keys', () => {
   
   it('should return Shift and other in Or when Shift pressed', () => {
     const event = { key: 'Shift', metaKey: false, shiftKey: true, ctrlKey: true };
-    const result = KeysKey.Or(event, KeysKey.ModifierKeys.Shift, KeysKey.ModifierKeys.Ctrl);
-    expect(result).to.have.members(['Shift', 'Ctrl']);
+    const result = KeysKey.Or(event, KeysKey.ModifierKeys.Shift, KeysKey.ModifierKeys.Control);
+    expect(result).to.have.members(['Shift', 'Control']);
   });
   
   it('should not return Shift in Or when other key not held', () => {
     const event = { key: 'Shift', metaKey: false, shiftKey: false, ctrlKey: false };
-    const result = KeysKey.Or(event, KeysKey.ModifierKeys.Shift, KeysKey.ModifierKeys.Ctrl);
+    const result = KeysKey.Or(event, KeysKey.ModifierKeys.Shift, KeysKey.ModifierKeys.Control);
     expect(result).to.deep.equal(['Shift']);
   });
 
