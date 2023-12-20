@@ -21,11 +21,11 @@ jobs:
               uses: actions/upload-artifact@v2
               with:
                 name: junit-reports
-                path: ./test-results/*.xml
+                path: test-results/*.xml
             - name: Publish Test Report
               if: always() # This ensures that the report is published even if the tests fail
               uses: dorny/test-reporter@v1
               with:
                 name: 'Your Test Report Name'
-                path: './test-results/*.xml' # Path where the JUnit test results are saved
+                path: 'test-results/*.xml' # Path where the JUnit test results are saved
                 reporter: jest-junit 
