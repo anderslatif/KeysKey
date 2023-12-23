@@ -1,15 +1,15 @@
 import { 
   KeyEventEnum as KeyEvent, 
-  NumberKeysEnum, 
-  LetterKeysEnum,   
-  SpecialCharacterKeysEnum,
-  WhiteSpaceKeysEnum,
-  MultimediaKeysEnum,
-  LockKeysEnum,
-  FunctionKeysEnum,
-  NavigationKeysEnum,
-  EditingKeysEnum,
-  ModifierKeysEnum,
+  Number, 
+  Letter,   
+  SpecialCharacter,
+  WhiteSpace,
+  Multimedia,
+  Lock,
+  Navigation,
+  Editing,
+  Modifier,
+  FunctionKeys,
   SpecialKeysGroup,
   AllKeysGroup } from "./types.js";
 import { unpackNestedArrays, getUniqueValues, countElementsInNestedArray } from "./util.js";
@@ -20,17 +20,17 @@ import { SpecialCombos } from "./specialCombos.js";
  * */
 class KeysKey {
 
-  public static Number: typeof NumberKeysEnum = NumberKeysEnum;
-  public static Letter: typeof LetterKeysEnum = LetterKeysEnum;
-  public static SpecialCharacter: typeof SpecialCharacterKeysEnum = SpecialCharacterKeysEnum;
-  public static WhiteSpace: typeof WhiteSpaceKeysEnum = WhiteSpaceKeysEnum;
-  public static Multimedia: typeof MultimediaKeysEnum = MultimediaKeysEnum;
-  public static Lock: typeof LockKeysEnum = LockKeysEnum;
-  public static Function: typeof FunctionKeysEnum = FunctionKeysEnum;
-  public static Navigation: typeof NavigationKeysEnum = NavigationKeysEnum;
-  public static Editing: typeof EditingKeysEnum = EditingKeysEnum;
-  public static ModifierKeys: typeof ModifierKeysEnum = ModifierKeysEnum;
-  public static SpecialKeysGroups: typeof SpecialKeysGroup = SpecialKeysGroup;
+  public static Number: typeof Number = Number;
+  public static Letter: typeof Letter = Letter;
+  public static SpecialCharacter: typeof SpecialCharacter = SpecialCharacter;
+  public static WhiteSpace: typeof WhiteSpace = WhiteSpace;
+  public static Multimedia: typeof Multimedia = Multimedia;
+  public static Lock: typeof Lock = Lock;
+  public static FunctionKeys: typeof FunctionKeys = FunctionKeys;
+  public static Navigation: typeof Navigation = Navigation;
+  public static Editing: typeof Editing = Editing;
+  public static Modifier: typeof Modifier = Modifier;
+  public static SpecialKeysGroup: typeof SpecialKeysGroup = SpecialKeysGroup;
   public static AllKeys: typeof AllKeysGroup = AllKeysGroup;
   
 
@@ -137,14 +137,14 @@ class KeysKey {
         return this.matchEventWithKeys(event, ...unpackedKeys);
       }
 
-      if (Object.values(KeysKey.Number).includes(key as NumberKeysEnum) 
-      || Object.values(KeysKey.Letter).includes(key as LetterKeysEnum)) {
+      if (Object.values(KeysKey.Number).includes(key as Number) 
+      || Object.values(KeysKey.Letter).includes(key as Letter)) {
         if (event.key === key) {
           matchedKeys.push(key);
         } else if (this.optimizedAndMode) {
           return undefined;
         }
-      } else if (Object.values(KeysKey.ModifierKeys).includes(key as ModifierKeysEnum)) {
+      } else if (Object.values(KeysKey.Modifier).includes(key as Modifier)) {
         console.log("Modifier key", key)
         // 1. First make sure to iterate over the modifier keys to check if any of them were pressed
         if (key === "Control" && event.ctrlKey) {
@@ -168,7 +168,7 @@ class KeysKey {
           matchedKeys.push("Shift");
         }
 
-      } else if (Object.values(KeysKey.SpecialKeysGroups).includes(key as any)) {
+      } else if (Object.values(KeysKey.SpecialKeysGroup).includes(key as any)) {
         matchedKeys.push(key);
       } else if (Object.values(KeysKey.AllKeys).includes(key as any)) {
         matchedKeys.push(key);

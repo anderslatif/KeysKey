@@ -1,4 +1,19 @@
 // This is the event that the browser dispatches when a key is pressed.
+/**
+ * @typedef {Object} KeyEventEnum
+ * @property {string} key - The value of the key that was pressed. For example, 'Enter' or 'a'.
+ * @property {boolean} metaKey - Indicates if the meta key (like Cmd or Windows) was pressed during the key event.
+ * @property {boolean} shiftKey - Indicates if the Shift key was pressed during the key event.
+ * @property {boolean} ctrlKey - Indicates if the Ctrl key was pressed during the key event.
+ * @property {boolean} altKey - Indicates if the Alt key was pressed during the key event.
+ * @property {number} keyCode - The numeric keyCode of the key pressed, for compatibility purposes.
+ * @property {Function} getModifierState - A function that returns the state of a specified modifier key.
+ *                                    Takes a string argument representing the key and returns a boolean.
+ * @description This type represents the structure of the event object that is dispatched by the browser
+ *              when a key is pressed. It contains information about the key event, including which keys
+ *              were pressed and the state of modifier keys. This is used internally to handle keyboard
+ *              interactions.
+ */
 export type KeyEventEnum = {
   key: string;
   metaKey: boolean;
@@ -9,7 +24,7 @@ export type KeyEventEnum = {
   getModifierState: (key: string) => boolean;
 };
 
-export enum NumberKeysEnum {
+export enum Number {
   Zero = '0',
   One = '1',
   Two = '2',
@@ -22,7 +37,7 @@ export enum NumberKeysEnum {
   Nine = '9',
 };
 
-export enum LetterKeysEnum {
+export enum Letter {
   A = 'A',
   B = 'B',
   C = 'C',
@@ -77,7 +92,7 @@ export enum LetterKeysEnum {
   z = 'z',
 };
 
-export enum SpecialCharacterKeysEnum {
+export enum SpecialCharacter {
   Ampersand = '&',
   Asterisk = '*',
   At = '@',
@@ -111,13 +126,13 @@ export enum SpecialCharacterKeysEnum {
   Underscore = '_',
 };
 
-export enum WhiteSpaceKeysEnum {
+export enum WhiteSpace {
   Enter = 'Enter',
   Space = ' ',
   Tab = 'Tab',
 };
 
-export enum MultimediaKeysEnum {
+export enum Multimedia {
   AudioVolumeDown = 'AudioVolumeDown',
   AudioVolumeMute = 'AudioVolumeMute',
   AudioVolumeUp = 'AudioVolumeUp',
@@ -127,13 +142,41 @@ export enum MultimediaKeysEnum {
   MediaTrackPrevious = 'MediaTrackPrevious',
 };
 
-export enum LockKeysEnum {
+export enum Lock {
   CapsLock = 'CapsLock',
   NumLock = 'NumLock',
   ScrollLock = 'ScrollLock',
 };
 
-export enum FunctionKeysEnum {
+export enum Navigation {
+  ArrowDown = 'ArrowDown',
+  ArrowLeft = 'ArrowLeft',
+  ArrowRight = 'ArrowRight',
+  ArrowUp = 'ArrowUp',
+  End = 'End',
+  Home = 'Home',
+  PageDown = 'PageDown',
+  PageUp = 'PageUp',
+};
+
+export enum Editing {
+  Backspace = 'Backspace',
+  Delete = 'Delete',
+  Enter = 'Enter',
+  Escape = 'Escape',
+  Insert = 'Insert',
+  Tab = 'Tab',
+};
+
+export enum Modifier {
+  Alt = 'Alt',
+  Control = 'Control',
+  Meta = 'Meta',
+  Option = 'Option',
+  Shift = 'Shift',
+};
+
+export enum FunctionKeys {
   F1 = 'F1',
   F2 = 'F2',
   F3 = 'F3',
@@ -148,48 +191,20 @@ export enum FunctionKeysEnum {
   F12 = 'F12',
 };
 
-export enum NavigationKeysEnum {
-  ArrowDown = 'ArrowDown',
-  ArrowLeft = 'ArrowLeft',
-  ArrowRight = 'ArrowRight',
-  ArrowUp = 'ArrowUp',
-  End = 'End',
-  Home = 'Home',
-  PageDown = 'PageDown',
-  PageUp = 'PageUp',
-};
-
-export enum EditingKeysEnum {
-  Backspace = 'Backspace',
-  Delete = 'Delete',
-  Enter = 'Enter',
-  Escape = 'Escape',
-  Insert = 'Insert',
-  Tab = 'Tab',
-};
-
-export enum ModifierKeysEnum {
-  Alt = 'Alt',
-  Control = 'Control',
-  Meta = 'Meta',
-  Option = 'Option',
-  Shift = 'Shift',
-};
-
 export const SpecialKeysGroup = {
-  ...SpecialCharacterKeysEnum,
-  ...WhiteSpaceKeysEnum,
-  ...MultimediaKeysEnum,
-  ...LockKeysEnum,
-  ...FunctionKeysEnum,
-  ...NavigationKeysEnum,
-  ...EditingKeysEnum,
-  ...ModifierKeysEnum,
+  ...SpecialCharacter,
+  ...WhiteSpace,
+  ...Multimedia,
+  ...Lock,
+  ...Function,
+  ...Navigation,
+  ...Editing,
+  ...Modifier,
 } as const;
 
 export const AllKeysGroup = {
-  ...NumberKeysEnum,
-  ...LetterKeysEnum,
+  ...Number,
+  ...Letter,
   ...SpecialKeysGroup,
 } as const;
 
