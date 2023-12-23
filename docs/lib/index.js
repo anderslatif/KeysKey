@@ -1,4 +1,4 @@
-import { NumberKeysEnum, LetterKeysEnum, SpecialCharacterKeysEnum, WhiteSpaceKeysEnum, MultimediaKeysEnum, LockKeysEnum, FunctionKeysEnum, NavigationKeysEnum, EditingKeysEnum, ModifierKeysEnum, SpecialKeysGroup, AllKeysGroup } from "./types.js";
+import { Number, Letter, SpecialCharacter, WhiteSpace, Multimedia, Lock, Navigation, Editing, Modifier, FunctionKeys, SpecialKeysGroup, AllKeysGroup } from "./types.js";
 import { unpackNestedArrays, getUniqueValues, countElementsInNestedArray } from "./util.js";
 import { SpecialCombos } from "./specialCombos.js";
 /**
@@ -96,8 +96,7 @@ class KeysKey {
                     return undefined;
                 }
             }
-            else if (Object.values(KeysKey.ModifierKeys).includes(key)) {
-                console.log("Modifier key", key);
+            else if (Object.values(KeysKey.Modifier).includes(key)) {
                 // 1. First make sure to iterate over the modifier keys to check if any of them were pressed
                 if (key === "Control" && event.ctrlKey) {
                     matchedKeys.push("Control");
@@ -126,27 +125,27 @@ class KeysKey {
                     matchedKeys.push("Shift");
                 }
             }
-            else if (Object.values(KeysKey.SpecialKeysGroups).includes(key)) {
+            else if (Object.values(KeysKey.SpecialKeysGroup).includes(key) && event.key === key) {
                 matchedKeys.push(key);
             }
-            else if (Object.values(KeysKey.AllKeys).includes(key)) {
+            else if (Object.values(KeysKey.AllKeys).includes(key) && event.key === key) {
                 matchedKeys.push(key);
             }
         }
         return matchedKeys;
     }
 }
-KeysKey.Number = NumberKeysEnum;
-KeysKey.Letter = LetterKeysEnum;
-KeysKey.SpecialCharacter = SpecialCharacterKeysEnum;
-KeysKey.WhiteSpace = WhiteSpaceKeysEnum;
-KeysKey.Multimedia = MultimediaKeysEnum;
-KeysKey.Lock = LockKeysEnum;
-KeysKey.Function = FunctionKeysEnum;
-KeysKey.Navigation = NavigationKeysEnum;
-KeysKey.Editing = EditingKeysEnum;
-KeysKey.ModifierKeys = ModifierKeysEnum;
-KeysKey.SpecialKeysGroups = SpecialKeysGroup;
+KeysKey.Number = Number;
+KeysKey.Letter = Letter;
+KeysKey.SpecialCharacter = SpecialCharacter;
+KeysKey.WhiteSpace = WhiteSpace;
+KeysKey.Multimedia = Multimedia;
+KeysKey.Lock = Lock;
+KeysKey.FunctionKeys = FunctionKeys;
+KeysKey.Navigation = Navigation;
+KeysKey.Editing = Editing;
+KeysKey.Modifier = Modifier;
+KeysKey.SpecialKeysGroup = SpecialKeysGroup;
 KeysKey.AllKeys = AllKeysGroup;
 KeysKey.debugMode = false;
 KeysKey.optimizedAndMode = false;

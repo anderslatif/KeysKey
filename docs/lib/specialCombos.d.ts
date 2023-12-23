@@ -38,7 +38,7 @@ import { KeyEventEnum as KeyEvent } from "./types.js";
     * - `isFunctionKey(event: KeyEvent): KeysKey[] | undefined`
     *   Returns the key name if a function key (F1-F12) is pressed, undefined otherwise.
     *
-    * - `isLetter(event: KeyEvent): KeysKey[] | undefined`
+    * - `isEnglishLetter(event: KeyEvent): KeysKey[] | undefined`
     *   Returns the key name if a letter (A-Z, a-z) is pressed, undefined otherwise.
     *
     * - `isLowercaseLetter(event: KeyEvent): KeysKey[] | undefined`
@@ -80,7 +80,7 @@ import { KeyEventEnum as KeyEvent } from "./types.js";
 export declare const SpecialCombos: {
     isDigit: (event: KeyEvent) => KeysKey[] | undefined;
     isFunctionKey: (event: KeyEvent) => string[];
-    isLetter: (event: KeyEvent) => string[];
+    isEnglishLetter: (event: KeyEvent) => string[];
     isLowercaseLetter: (event: KeyEvent) => string[];
     isUppercaseLetter: (event: KeyEvent) => string[];
     isSpecialCharacter: (event: KeyEvent) => string[];

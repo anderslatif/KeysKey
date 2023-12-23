@@ -6,6 +6,7 @@ export function isSpecialCharacters(event) {
     let result = false;
 
     result = KeysKey.Is(event, KeysKey.SpecialCharacter.Ampersand);
+    console.log(event);
     if (result) {
         result = false;
         document.getElementById("Ampersand").classList.add("grid-item-active");

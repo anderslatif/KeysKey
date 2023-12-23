@@ -34,24 +34,18 @@ const groups = {
         }
     },
     isFunctionKey: (event) => event.keyCode >= 112 && event.keyCode <= 123 ? [event.key] : undefined,
-    isLetter: (event) => {
-        const keyString = "" + event.key;
-        const keyCode = keyString.charCodeAt(0);
-        if ((keyCode >= 65 && keyCode <= 90) || (keyCode >= 97 && keyCode <= 122)) {
+    isEnglishLetter: (event) => {
+        if (event.key.length === 1 && /^[A-Za-z]$/.test(event.key)) {
             return [event.key];
         }
     },
     isLowercaseLetter: (event) => {
-        const keyString = "" + event.key;
-        const keyCode = keyString.charCodeAt(0);
-        if (keyCode >= 97 && keyCode <= 122) {
+        if (event.key.length === 1 && /[a-z]/.test(event.key)) {
             return [event.key];
         }
     },
     isUppercaseLetter: (event) => {
-        const keyString = "" + event.key;
-        const keyCode = keyString.charCodeAt(0);
-        if (keyCode >= 65 && keyCode <= 90) {
+        if (event.key.length === 1 && /[A-Z]/.test(event.key)) {
             return [event.key];
         }
     },
@@ -125,7 +119,7 @@ const groups = {
     * - `isFunctionKey(event: KeyEvent): KeysKey[] | undefined`
     *   Returns the key name if a function key (F1-F12) is pressed, undefined otherwise.
     *
-    * - `isLetter(event: KeyEvent): KeysKey[] | undefined`
+    * - `isEnglishLetter(event: KeyEvent): KeysKey[] | undefined`
     *   Returns the key name if a letter (A-Z, a-z) is pressed, undefined otherwise.
     *
     * - `isLowercaseLetter(event: KeyEvent): KeysKey[] | undefined`
