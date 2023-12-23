@@ -161,7 +161,9 @@ export declare enum Editing {
 export declare enum Modifier {
     Alt = "Alt",
     Control = "Control",
+    /** Represents the 'Meta' key, which is the Command key on Mac and Windows key on Windows systems. */
     Meta = "Meta",
+    /** Represents the 'Option' key on Mac keyboards, often used as a modifier key. */
     Option = "Option",
     Shift = "Shift"
 }
@@ -182,7 +184,9 @@ export declare enum FunctionKeys {
 export declare const SpecialKeysGroup: {
     readonly Alt: Modifier.Alt;
     readonly Control: Modifier.Control;
+    /** Represents the 'Meta' key, which is the Command key on Mac and Windows key on Windows systems. */
     readonly Meta: Modifier.Meta;
+    /** Represents the 'Option' key on Mac keyboards, often used as a modifier key. */
     readonly Option: Modifier.Option;
     readonly Shift: Modifier.Shift;
     readonly Backspace: Editing.Backspace;
@@ -246,7 +250,9 @@ export declare const SpecialKeysGroup: {
 export declare const AllKeysGroup: {
     readonly Alt: Modifier.Alt;
     readonly Control: Modifier.Control;
+    /** Represents the 'Meta' key, which is the Command key on Mac and Windows key on Windows systems. */
     readonly Meta: Modifier.Meta;
+    /** Represents the 'Option' key on Mac keyboards, often used as a modifier key. */
     readonly Option: Modifier.Option;
     readonly Shift: Modifier.Shift;
     readonly Backspace: Editing.Backspace;

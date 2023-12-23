@@ -57,7 +57,7 @@ declare class KeysKey {
     static SpecialCombos: {
         isDigit: (event: KeyEvent) => KeysKey[];
         isFunctionKey: (event: KeyEvent) => string[];
-        isLetter: (event: KeyEvent) => string[];
+        isEnglishLetter: (event: KeyEvent) => string[];
         isLowercaseLetter: (event: KeyEvent) => string[];
         isUppercaseLetter: (event: KeyEvent) => string[];
         isSpecialCharacter: (event: KeyEvent) => string[];
