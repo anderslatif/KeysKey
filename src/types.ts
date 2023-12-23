@@ -171,7 +171,9 @@ export enum Editing {
 export enum Modifier {
   Alt = 'Alt',
   Control = 'Control',
+  /** Represents the 'Meta' key, which is the Command key on Mac and Windows key on Windows systems. */
   Meta = 'Meta',
+  /** Represents the 'Option' key on Mac keyboards, often used as a modifier key. */
   Option = 'Option',
   Shift = 'Shift',
 };

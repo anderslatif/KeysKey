@@ -145,7 +145,6 @@ class KeysKey {
           return undefined;
         }
       } else if (Object.values(KeysKey.Modifier).includes(key as Modifier)) {
-        console.log("Modifier key", key)
         // 1. First make sure to iterate over the modifier keys to check if any of them were pressed
         if (key === "Control" && event.ctrlKey) {
           matchedKeys.push("Control");
@@ -167,10 +166,9 @@ class KeysKey {
           console.log(key)
           matchedKeys.push("Shift");
         }
-
-      } else if (Object.values(KeysKey.SpecialKeysGroup).includes(key as any)) {
+      } else if (Object.values(KeysKey.SpecialKeysGroup).includes(key as any) && event.key === key) {
         matchedKeys.push(key);
-      } else if (Object.values(KeysKey.AllKeys).includes(key as any)) {
+      } else if (Object.values(KeysKey.AllKeys).includes(key as any) && event.key === key) {
         matchedKeys.push(key);
       }
     }
