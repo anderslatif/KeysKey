@@ -1,6 +1,6 @@
 // Remember that this is the path to lib embedded in the GH-page folder
 // and not the lib that is compiled by the build script.
-import KeysKey from "../lib/index.js";
+import KeysKey from "../../lib/index.js";
 
 export function isSpecialCharacters(event) {
     let result = false;

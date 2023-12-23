@@ -25,12 +25,13 @@ h1 {
     background-color: #818181;
     text-align: center;
     border: 1px solid #ccc; 
-    font-size: 0.6em;
     transition: background-color 0.3s; /* Smooth transition for background color change */
 }
 
 .grid-item p {
     font-size: 0.5em;
+    word-wrap: break-word;
+    padding: 0 4px 0 4px;
 }
 
 .grid-item-active {

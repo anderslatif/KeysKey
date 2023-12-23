@@ -1,6 +1,6 @@
-import { isUppercaseLetters, isLowercaseLetters, isNumbers } from "./numbersAndLetters.js";
-import { isSpecialCharacters } from "./specialCharacters.js";
-import { isSpecialCombos } from "./specialCombos.js";
+import { isUppercaseLetters, isLowercaseLetters, isNumbers } from "./examples/numbersAndLetters.js";
+import { isSpecialCharacters } from "./examples/specialCharacters.js";
+import { isSpecialCombos } from "./examples/specialCombos.js";
 
 window.onkeydown = (event) => {
     isUppercaseLetters(event);
