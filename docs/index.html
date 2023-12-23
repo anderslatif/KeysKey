@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="./index.css">
-    <!-- Include CodeMirror CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
 
     <link rel="icon" type="image/png" href="https://github.com/anderslatif/KeysKey/blob/main/KeysKeyLogo.png">
+
+    </style>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,40 +15,151 @@
     <div class="header-container">
         
         <img src="https://github.com/anderslatif/KeysKey/blob/main/KeysKeyLogo.png" alt="logo" width="200"/>
-        <h1>Keys Key Examples. Press any keyboard key or combo of keyboard keys.</h1>
+        <h4>Keys Key Examples. Press any keyboard key or combo of keyboard keys.</h4>
     </div>
       
 
+    <!-- <h5>Numbers and Letters</h5> -->
     <div class="grid-container">
-        <div id="A" class="grid-item">A</div>
-        <div id="B" class="grid-item">B</div>
-        <div id="C" class="grid-item">C</div>
-        <div id="a" class="grid-item">a</div>
-        <div id="b" class="grid-item">b</div>
-        <div id="c" class="grid-item">c</div>
-        <div id="1" class="grid-item">1</div>
-        <div id="2" class="grid-item">2</div>
-        <div id="3" class="grid-item">3</div>
+        <!-- Uppercase Letters -->
+        <div id="A" class="grid-item">A <p>KeysKey.Is(event, KeysKey.Letter.A)</p></div>
+        <div id="B" class="grid-item">B <p>KeysKey.Is(event, KeysKey.Letter.B)</p></div>
+        <div id="C" class="grid-item">C <p>KeysKey.Is(event, KeysKey.Letter.C)</p></div>
+        <div id="D" class="grid-item">D <p>KeysKey.Is(event, KeysKey.Letter.D)</p></div>
+        <div id="E" class="grid-item">E <p>KeysKey.Is(event, KeysKey.Letter.E)</p></div>
+        <div id="F" class="grid-item">F <p>KeysKey.Is(event, KeysKey.Letter.F)</p></div>
+        <div id="G" class="grid-item">G <p>KeysKey.Is(event, KeysKey.Letter.G)</p></div>
+        <div id="H" class="grid-item">H <p>KeysKey.Is(event, KeysKey.Letter.H)</p></div>
+        <div id="I" class="grid-item">I <p>KeysKey.Is(event, KeysKey.Letter.I)</p></div>
+        <div id="J" class="grid-item">J <p>KeysKey.Is(event, KeysKey.Letter.J)</p></div>
+        <div id="K" class="grid-item">K <p>KeysKey.Is(event, KeysKey.Letter.K)</p></div>
+        <div id="L" class="grid-item">L <p>KeysKey.Is(event, KeysKey.Letter.L)</p></div>
+        <div id="M" class="grid-item">M <p>KeysKey.Is(event, KeysKey.Letter.M)</p></div>
+        <div id="N" class="grid-item">N <p>KeysKey.Is(event, KeysKey.Letter.N)</p></div>
+        <div id="O" class="grid-item">O <p>KeysKey.Is(event, KeysKey.Letter.O)</p></div>
+        <div id="P" class="grid-item">P <p>KeysKey.Is(event, KeysKey.Letter.P)</p></div>
+        <div id="Q" class="grid-item">Q <p>KeysKey.Is(event, KeysKey.Letter.Q)</p></div>
+        <div id="R" class="grid-item">R <p>KeysKey.Is(event, KeysKey.Letter.R)</p></div>
+        <div id="S" class="grid-item">S <p>KeysKey.Is(event, KeysKey.Letter.S)</p></div>
+        <div id="T" class="grid-item">T <p>KeysKey.Is(event, KeysKey.Letter.T)</p></div>
+        <div id="U" class="grid-item">U <p>KeysKey.Is(event, KeysKey.Letter.U)</p></div>
+        <div id="V" class="grid-item">V <p>KeysKey.Is(event, KeysKey.Letter.V)</p></div>
+        <div id="W" class="grid-item">W <p>KeysKey.Is(event, KeysKey.Letter.W)</p></div>
+        <div id="X" class="grid-item">X <p>KeysKey.Is(event, KeysKey.Letter.X)</p></div>
+        <div id="Y" class="grid-item">Y <p>KeysKey.Is(event, KeysKey.Letter.Y)</p></div>
+        <div id="Z" class="grid-item">Z <p>KeysKey.Is(event, KeysKey.Letter.Z)</p></div>
+    
+        <!-- Lowercase Letters -->
+        <div id="a" class="grid-item">a <p>KeysKey.Is(event, KeysKey.Letter.a)</p></div>
+        <div id="b" class="grid-item">b <p>KeysKey.Is(event, KeysKey.Letter.b)</p></div>
+        <div id="c" class="grid-item">c <p>KeysKey.Is(event, KeysKey.Letter.c)</p></div>
+        <div id="d" class="grid-item">d <p>KeysKey.Is(event, KeysKey.Letter.d)</p></div>
+        <div id="e" class="grid-item">e <p>KeysKey.Is(event, KeysKey.Letter.e)</p></div>
+        <div id="f" class="grid-item">f <p>KeysKey.Is(event, KeysKey.Letter.f)</p></div>
+        <div id="g" class="grid-item">g <p>KeysKey.Is(event, KeysKey.Letter.g)</p></div>
+        <div id="h" class="grid-item">h <p>KeysKey.Is(event, KeysKey.Letter.h)</p></div>
+        <div id="i" class="grid-item">i <p>KeysKey.Is(event, KeysKey.Letter.i)</p></div>
+        <div id="j" class="grid-item">j <p>KeysKey.Is(event, KeysKey.Letter.j)</p></div>
+        <div id="k" class="grid-item">k <p>KeysKey.Is(event, KeysKey.Letter.k)</p></div>
+        <div id="l" class="grid-item">l <p>KeysKey.Is(event, KeysKey.Letter.l)</p></div>
+        <div id="m" class="grid-item">m <p>KeysKey.Is(event, KeysKey.Letter.m)</p></div>
+        <div id="n" class="grid-item">n <p>KeysKey.Is(event, KeysKey.Letter.n)</p></div>
+        <div id="o" class="grid-item">o <p>KeysKey.Is(event, KeysKey.Letter.o)</p></div>
+        <div id="p" class="grid-item">p <p>KeysKey.Is(event, KeysKey.Letter.p)</p></div>
+        <div id="q" class="grid-item">q <p>KeysKey.Is(event, KeysKey.Letter.q)</p></div>
+        <div id="r" class="grid-item">r <p>KeysKey.Is(event, KeysKey.Letter.r)</p></div>
+        <div id="s" class="grid-item">s <p>KeysKey.Is(event, KeysKey.Letter.s)</p></div>
+        <div id="t" class="grid-item">t <p>KeysKey.Is(event, KeysKey.Letter.t)</p></div>
+        <div id="u" class="grid-item">u <p>KeysKey.Is(event, KeysKey.Letter.u)</p></div>
+        <div id="v" class="grid-item">v <p>KeysKey.Is(event, KeysKey.Letter.v)</p></div>
+        <div id="w" class="grid-item">w <p>KeysKey.Is(event, KeysKey.Letter.w)</p></div>
+        <div id="x" class="grid-item">x <p>KeysKey.Is(event, KeysKey.Letter.x)</p></div>
+        <div id="y" class="grid-item">y <p>KeysKey.Is(event, KeysKey.Letter.y)</p></div>
+        <div id="z" class="grid-item">z <p>KeysKey.Is(event, KeysKey.Letter.z)</p></div>
+
+        <!-- Numbers -->
+        <div id="0" class="grid-item">0 <p>KeysKey.Is(event, KeysKey.Number.Zero)</p></div>
+        <div id="1" class="grid-item">1 <p>KeysKey.Is(event, KeysKey.Number.One)</p></div>
+        <div id="2" class="grid-item">2 <p>KeysKey.Is(event, KeysKey.Number.Two)</p></div>
+        <div id="3" class="grid-item">3 <p>KeysKey.Is(event, KeysKey.Number.Three)</p></div>
+        <div id="4" class="grid-item">4 <p>KeysKey.Is(event, KeysKey.Number.Four)</p></div>
+        <div id="5" class="grid-item">5 <p>KeysKey.Is(event, KeysKey.Number.Five)</p></div>
+        <div id="6" class="grid-item">6 <p>KeysKey.Is(event, KeysKey.Number.Six)</p></div>
+        <div id="7" class="grid-item">7 <p>KeysKey.Is(event, KeysKey.Number.Seven)</p></div>
+        <div id="8" class="grid-item">8 <p>KeysKey.Is(event, KeysKey.Number.Eight)</p></div>
+        <div id="9" class="grid-item">9 <p>KeysKey.Is(event, KeysKey.Number.Nine)</p></div>
     </div>
 
+
+
+    <!-- <h5>Special Characters</h5> -->
+    <div class="grid-container">
+        <!-- Special Characters -->
+        <div id="Ampersand" class="grid-item">&amp; <p>KeysKey.Is(event, KeysKey.SpecialCharacter.Ampersand)</p></div>
+        <div id="Asterisk" class="grid-item">*</p> <p>KeysKey.Is(event, KeysKey.SpecialCharacter.Asterisk)</p></div>
+        <div id="At" class="grid-item">@ <p>KeysKey.Is(event, KeysKey.SpecialCharacter.At)</p></div>
+        <div id="Backquote" class="grid-item">` <p>KeysKey.Is(event, KeysKey.SpecialCharacter.Backquote)</p></div>
+        <div id="Backslash" class="grid-item">\ <p>KeysKey.Is(event, KeysKey.SpecialCharacter.Backslash)</p></div>
+        <div id="BracketLeft" class="grid-item">[ <p>KeysKey.Is(event, KeysKey.SpecialCharacter.BracketLeft)</p></div>
+        <div id="BracketRight" class="grid-item">] <p>KeysKey.Is(event, KeysKey.SpecialCharacter.BracketRight)</p></div>
+        <div id="Caret" class="grid-item">^ <p>KeysKey.Is(event, KeysKey.SpecialCharacter.Caret)</p></div>
+        <div id="Colon" class="grid-item">: <p>KeysKey.Is(event, KeysKey.SpecialCharacter.Colon)</p></div>
+        <div id="Comma" class="grid-item">, <p>KeysKey.Is(event, KeysKey.SpecialCharacter.Comma)</p></div>
+        <div id="CurlyLeft" class="grid-item">{ <p>KeysKey.Is(event, KeysKey.SpecialCharacter.CurlyLeft)</p></div>
+        <div id="CurlyRight" class="grid-item">} <p>KeysKey.Is(event, KeysKey.SpecialCharacter.CurlyRight)</p></div>
+        <div id="Dollar" class="grid-item">$ <p>KeysKey.Is(event, KeysKey.SpecialCharacter.Dollar)</p></div>
+        <div id="Equal" class="grid-item">= <p>KeysKey.Is(event, KeysKey.SpecialCharacter.Equal)</p></div>
+        <div id="Exclamation" class="grid-item">! <p>KeysKey.Is(event, KeysKey.SpecialCharacter.Exclamation)</p></div>
+        <div id="GreaterThan" class="grid-item">&gt; <p>KeysKey.Is(event, KeysKey.SpecialCharacter.GreaterThan)</p></div>
+        <div id="Hash" class="grid-item"># <p>KeysKey.Is(event, KeysKey.SpecialCharacter.Hash)</p></div>
+        <div id="LessThan" class="grid-item">&lt; <p>KeysKey.Is(event, KeysKey.SpecialCharacter.LessThan)</p></div>
+        <div id="ParenLeft" class="grid-item">( <p>KeysKey.Is(event, KeysKey.SpecialCharacter.ParenLeft)</p></div>
+        <div id="ParenRight" class="grid-item">) <p>KeysKey.Is(event, KeysKey.SpecialCharacter.ParenRight)</p></div>
+        <div id="Percent" class="grid-item">% <p>KeysKey.Is(event, KeysKey.SpecialCharacter.Percent)</p></div>
+        <div id="Pipe" class="grid-item">| <p>KeysKey.Is(event, KeysKey.SpecialCharacter.Pipe)</p></div>
+        <div id="Period" class="grid-item">. <p>KeysKey.Is(event, KeysKey.SpecialCharacter.Period)</p></div>
+        <div id="Plus" class="grid-item">+ <p>KeysKey.Is(event, KeysKey.SpecialCharacter.Plus)</p></div>
+        <div id="QuestionMark" class="grid-item">? <p>KeysKey.Is(event, KeysKey.SpecialCharacter.QuestionMark)</p></div>
+        <div id="Quote" class="grid-item">' <p>KeysKey.Is(event, KeysKey.SpecialCharacter.Quote)</p></div>
+        <div id="Semicolon" class="grid-item">; <p>KeysKey.Is(event, KeysKey.SpecialCharacter.Semicolon)</p></div>
+        <div id="Slash" class="grid-item">/ <p>KeysKey.Is(event, KeysKey.SpecialCharacter.Slash)</p></div>
+        <div id="Subtract" class="grid-item">- <p>KeysKey.Is(event, KeysKey.SpecialCharacter.Subtract)</p></div>
+        <div id="Tilde" class="grid-item">~ <p>KeysKey.Is(event, KeysKey.SpecialCharacter.Tilde)</p></div>
+        <div id="Underscore" class="grid-item">_ <p>KeysKey.Is(event, KeysKey.SpecialCharacter.Underscore)</p></div>
+    </div>
     
 
-    <div class="center-container">
-        <h2><a href="https://anderslatif.github.io/KeysKey/generated_docs/">Documentation</a></h2>
-        <h2>
-            <span style="color: #6a5acd;">import</span>
-            <span style="color: #D73A49;">KeysKey</span>
-            <span style="color: #455564;">from</span>
-            <span style="color: #0366D6;">"keyskey"</span>;
-        </h2>
-        <p>Events will be fired and populated in your evaluated code. You can now just use KeysKey below:</p>
+    <!-- <h5>Special Combos</h5> -->
+    <div class="grid-container">
+        <div id="isAltAndControl" class="grid-item">Alt + Control<p>KeysKey.SpecialCombos.isAltAndControl(event)</p></div>
+        <div id="isAltAndShift" class="grid-item">Alt + Shift<p>KeysKey.SpecialCombos.isAltAndShift(event)</p></div>
+        <div id="isAltOrShift" class="grid-item">Alt or Shift<p>KeysKey.SpecialCombos.isAltOrShift(event)</p></div>
+        <div id="isControlAndShift" class="grid-item">Control + Shift<p>KeysKey.SpecialCombos.isControlAndShift(event)</p></div>
+        <div id="isControlOrShift" class="grid-item">Control or Shift<p>KeysKey.SpecialCombos.(event)</p></div>
+        <div id="isDigit" class="grid-item">Digit<p>KeysKey.SpecialCombos.isDigit(event)</p></div>
+        <div id="isFunctionKey" class="grid-item">Function Key<p>KeysKey.SpecialCombos.isFunctionKey(event)</p></div>
+        <div id="isEnglishLetter" class="grid-item">Is English Letter<p>KeysKey.SpecialCombos.isEnglishLetter(event)</p></div>
+        <div id="isLowercaseLetter" class="grid-item">Lowercase Letter<p>KeysKey.SpecialCombos.isLowercaseLetter(event)</p></div>
+        <div id="isMediaControl" class="grid-item">Media Control<p>KeysKey.SpecialCombos.isMediaControl(event)</p></div>
+        <div id="isMetaAndControl" class="grid-item">Meta + Control<p>KeysKey.SpecialCombos.isMetaAndControl(event)</p></div>
+        <div id="isMetaAndShift" class="grid-item">Meta + Shift<p>KeysKey.SpecialCombos.isMetaAndShift(event)</p></div>
+        <div id="isMetaOrControl" class="grid-item">Meta or Control<p>KeysKey.SpecialCombos.isMetaOrControl(event)</p></div>
+        <div id="isMetaOrShift" class="grid-item">Meta or Shift<p>KeysKey.SpecialCombos.isMetaOrShift(event)</p></div>
+        <div id="isModifier" class="grid-item">Modifier<p>KeysKey.SpecialCombos.isModifier(event)</p></div>
+        <div id="isNavigationKey" class="grid-item">Navigation Key<p>KeysKey.SpecialCombos.isNavigationKey(event)</p></div>
+        <div id="isNonEnglishLetter" class="grid-item">Non-English Letter<p>KeysKey.SpecialCombos.isNonEnglishLetter(event)</p></div>
+        <div id="isSpecialCharacter" class="grid-item">Special Character<p>KeysKey.SpecialCombos.isSpecialCharacter(event)</p></div>
+        <div id="isUppercaseLetter" class="grid-item">Uppercase Letter<p>KeysKey.SpecialCombos.isUppercaseLetter(event)</p></div>
+        <div id="isWhitespace" class="grid-item">Whitespace<p>KeysKey.SpecialCombos.isWhitespace(event)</p></div>
     </div>
-    <textarea id="codeBox"></textarea>
     
+    
+
+
+    <script src="./numbersAndLetters.js" type="module"></script>
+    <script src="./specialCharacters.js"></script>
+    <script src="./specialCombos.js" type="module"></script>
     <script src="./index.js" type="module"></script>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script> -->
-    <script src="./highlighter.js"></script>
+
 </body>
 </html>
