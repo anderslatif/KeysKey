@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import KeysKey from "../lib/index.js";
 
 
-describe('Testing Modifier keys', () => {
+describe('Special Combos eitherOr', () => {
 
   // Tests for isAltAndControl method
   it('should return Alt and Control when Alt pressed and Control held', () => {

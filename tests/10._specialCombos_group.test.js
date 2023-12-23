@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import KeysKey from "../lib/index.js";
 
 
-describe('Testing Modifier keys', () => {
+describe('Special Combos group', () => {
 
   // Tests for isDigit method
   it('should return the key when a digit key (0-9) is pressed', () => {
@@ -40,13 +40,13 @@ describe('Testing Modifier keys', () => {
     });
   });
 
-  // Tests for isLetter method
+  // Tests for isEnglishLetter method
   it('should return the key when a letter key (A-Z, a-z) is pressed', () => {
     const letterKeys = [...Array(26).keys()].map(i => String.fromCharCode(i + 65)) // A-Z
                             .concat([...Array(26).keys()].map(i => String.fromCharCode(i + 97))); // a-z
     letterKeys.forEach(key => {
       const event = { key: key };
-      const result = KeysKey.SpecialCombos.isLetter(event);
+      const result = KeysKey.SpecialCombos.isEnglishLetter(event);
       expect(result).to.deep.equal([key]);
     });
   });
@@ -55,7 +55,7 @@ describe('Testing Modifier keys', () => {
     const nonLetterKeys = ['1', '!', '@', '[', '/'];
     nonLetterKeys.forEach(key => {
       const event = { key: key };
-      const result = KeysKey.SpecialCombos.isLetter(event);
+      const result = KeysKey.SpecialCombos.isEnglishLetter(event);
       expect(result).to.be.undefined;
     });
   });
