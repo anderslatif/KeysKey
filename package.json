@@ -1,6 +1,6 @@
 {
   "name": "keyskey",
-  "version": "0.0.7",
+  "version": "0.0.71",
   "description": "A keyboard key library without any fuss.",
   "type": "module",
   "main": "lib/index.js",
