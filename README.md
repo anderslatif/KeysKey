@@ -45,6 +45,8 @@ window.onkeydown = (event) => {
 };
 ```
 
+The following examples will feature a hard coded object called event that mimics the dispatched DOM event to show the values being pressed and held.  
+
 All methods return undefined when there is no match:
 
 ```javascript
@@ -71,9 +73,9 @@ Also works as a variadic function:
 ```javascript
 import KeysKey from "keyskey";
 
-const event = { key: '1', metaKey: true, shiftKey: false, ctrlKey: false };
-const result = KeysKey.And(event, KeysKey.Number.One, KeysKey.ModifierKeys.Meta);
-console.log(result) // [ '1', "Meta" ]
+const event = { key: '1', metaKey: false, shiftKey: true, ctrlKey: false };
+const result = KeysKey.And(event, KeysKey.Number.One, KeysKey.Modifier.Shift);
+console.log(result) // [ '1', "Shift" ]
 ```
 
 Example of a special key combo:
@@ -81,9 +83,9 @@ Example of a special key combo:
 ```javascript
 import KeysKey from "keyskey";
 
-const event = { key: 'A', metaKey: true, shiftKey: true, ctrlKey: false };
-const result = KeysKey.SpecialCombos.isMetaAndShift(event);
-console.log(result); // [ 'Meta', 'Shift' ]
+const event = { key: 'A', metaKey: false, shiftKey: true, ctrlKey: true };
+const result = KeysKey.SpecialCombos.isControlAndShift(event);
+console.log(result); // [ 'Control', 'Shift' ]
 ```
 
 Another example of a special key combo:
@@ -131,7 +133,7 @@ These can be targetted through: `KeysKey.SpecialCombos.`:
 | `isDelete`             | `event: KeyEvent`  | Returns `[event.key]` if the Delete key is pressed (key code 46), otherwise `undefined`. |
 | `isDigit`              | `event: KeyEvent`  | Returns `[event.key]` if a digit (0-9) is pressed, otherwise `undefined`. |
 | `isFunctionKey`        | `event: KeyEvent`  | Returns `[event.key]` if a function key (F1-F12) is pressed, otherwise `undefined`. |
-| `isLetter`             | `event: KeyEvent`  | Returns `[event.key]` if a letter (A-Z, a-z) is pressed, otherwise `undefined`. |
+| `isEnglishLetter`      | `event: KeyEvent`  | Returns `[event.key]` if a letter (A-Z, a-z) is pressed, otherwise `undefined`. |
 | `isLowercaseLetter`    | `event: KeyEvent`  | Returns `[event.key]` if a lowercase letter (a-z) is pressed, otherwise `undefined`. |
 | `isMediaControl`       | `event: KeyEvent`  | Returns `[event.key]` if a media control key is pressed, otherwise `undefined`. |
 | `isMetaAndControl`     | `event: KeyEvent`  | Returns `["Meta", "Control"]` if both Meta and Control keys are pressed, otherwise `undefined`. |
@@ -159,8 +161,8 @@ These can be targetted through: `KeysKey.SpecialCombos.`:
 | `Function`         | Function keys (F1, F2, ..., F12)                 |
 | `Navigation`       | Arrow keys, Page Up/Down, Home, End              |
 | `Editing`          | Insert, Delete, Backspace, etc.                  |
-| `ModifierKeys`     | Shift, Ctrl, Alt, Windows/Command keys           |
-| `SpecialKeysGroups`| Combination of all above keys except Number and Letter |
+| `Modifier`         | Shift, Ctrl, Alt, Windows/Command keys           |
+| `SpecialKeysGroup` | Combination of all above keys except Number and Letter |
 | `AllKeys`          | Includes all key types above                           |
 
 ## Issues
