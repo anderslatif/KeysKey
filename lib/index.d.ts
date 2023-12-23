@@ -1,19 +1,19 @@
-import { KeyEventEnum as KeyEvent, NumberKeysEnum, LetterKeysEnum, SpecialCharacterKeysEnum, WhiteSpaceKeysEnum, MultimediaKeysEnum, LockKeysEnum, FunctionKeysEnum, NavigationKeysEnum, EditingKeysEnum, ModifierKeysEnum, SpecialKeysGroup, AllKeysGroup } from "./types.js";
+import { KeyEventEnum as KeyEvent, Number, Letter, SpecialCharacter, WhiteSpace, Multimedia, Lock, Navigation, Editing, Modifier, FunctionKeys, SpecialKeysGroup, AllKeysGroup } from "./types.js";
 /**
  * This is the main class of the library. It contains all the methods to check if a key event matches a key or a combination of keys.
  * */
 declare class KeysKey {
-    static Number: typeof NumberKeysEnum;
-    static Letter: typeof LetterKeysEnum;
-    static SpecialCharacter: typeof SpecialCharacterKeysEnum;
-    static WhiteSpace: typeof WhiteSpaceKeysEnum;
-    static Multimedia: typeof MultimediaKeysEnum;
-    static Lock: typeof LockKeysEnum;
-    static Function: typeof FunctionKeysEnum;
-    static Navigation: typeof NavigationKeysEnum;
-    static Editing: typeof EditingKeysEnum;
-    static ModifierKeys: typeof ModifierKeysEnum;
-    static SpecialKeysGroups: typeof SpecialKeysGroup;
+    static Number: typeof Number;
+    static Letter: typeof Letter;
+    static SpecialCharacter: typeof SpecialCharacter;
+    static WhiteSpace: typeof WhiteSpace;
+    static Multimedia: typeof Multimedia;
+    static Lock: typeof Lock;
+    static FunctionKeys: typeof FunctionKeys;
+    static Navigation: typeof Navigation;
+    static Editing: typeof Editing;
+    static Modifier: typeof Modifier;
+    static SpecialKeysGroup: typeof SpecialKeysGroup;
     static AllKeys: typeof AllKeysGroup;
     static debugMode: boolean;
     static optimizedAndMode: boolean;

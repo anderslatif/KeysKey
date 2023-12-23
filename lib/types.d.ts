@@ -1,3 +1,18 @@
+/**
+ * @typedef {Object} KeyEventEnum
+ * @property {string} key - The value of the key that was pressed. For example, 'Enter' or 'a'.
+ * @property {boolean} metaKey - Indicates if the meta key (like Cmd or Windows) was pressed during the key event.
+ * @property {boolean} shiftKey - Indicates if the Shift key was pressed during the key event.
+ * @property {boolean} ctrlKey - Indicates if the Ctrl key was pressed during the key event.
+ * @property {boolean} altKey - Indicates if the Alt key was pressed during the key event.
+ * @property {number} keyCode - The numeric keyCode of the key pressed, for compatibility purposes.
+ * @property {Function} getModifierState - A function that returns the state of a specified modifier key.
+ *                                    Takes a string argument representing the key and returns a boolean.
+ * @description This type represents the structure of the event object that is dispatched by the browser
+ *              when a key is pressed. It contains information about the key event, including which keys
+ *              were pressed and the state of modifier keys. This is used internally to handle keyboard
+ *              interactions.
+ */
 export type KeyEventEnum = {
     key: string;
     metaKey: boolean;
@@ -7,7 +22,7 @@ export type KeyEventEnum = {
     keyCode: number;
     getModifierState: (key: string) => boolean;
 };
-export declare enum NumberKeysEnum {
+export declare enum Number {
     Zero = "0",
     One = "1",
     Two = "2",
@@ -19,7 +34,7 @@ export declare enum NumberKeysEnum {
     Eight = "8",
     Nine = "9"
 }
-export declare enum LetterKeysEnum {
+export declare enum Letter {
     A = "A",
     B = "B",
     C = "C",
@@ -73,7 +88,7 @@ export declare enum LetterKeysEnum {
     y = "y",
     z = "z"
 }
-export declare enum SpecialCharacterKeysEnum {
+export declare enum SpecialCharacter {
     Ampersand = "&",
     Asterisk = "*",
     At = "@",
@@ -106,12 +121,12 @@ export declare enum SpecialCharacterKeysEnum {
     Tilde = "~",
     Underscore = "_"
 }
-export declare enum WhiteSpaceKeysEnum {
+export declare enum WhiteSpace {
     Enter = "Enter",
     Space = " ",
     Tab = "Tab"
 }
-export declare enum MultimediaKeysEnum {
+export declare enum Multimedia {
     AudioVolumeDown = "AudioVolumeDown",
     AudioVolumeMute = "AudioVolumeMute",
     AudioVolumeUp = "AudioVolumeUp",
@@ -120,12 +135,37 @@ export declare enum MultimediaKeysEnum {
     MediaTrackNext = "MediaTrackNext",
     MediaTrackPrevious = "MediaTrackPrevious"
 }
-export declare enum LockKeysEnum {
+export declare enum Lock {
     CapsLock = "CapsLock",
     NumLock = "NumLock",
     ScrollLock = "ScrollLock"
 }
-export declare enum FunctionKeysEnum {
+export declare enum Navigation {
+    ArrowDown = "ArrowDown",
+    ArrowLeft = "ArrowLeft",
+    ArrowRight = "ArrowRight",
+    ArrowUp = "ArrowUp",
+    End = "End",
+    Home = "Home",
+    PageDown = "PageDown",
+    PageUp = "PageUp"
+}
+export declare enum Editing {
+    Backspace = "Backspace",
+    Delete = "Delete",
+    Enter = "Enter",
+    Escape = "Escape",
+    Insert = "Insert",
+    Tab = "Tab"
+}
+export declare enum Modifier {
+    Alt = "Alt",
+    Control = "Control",
+    Meta = "Meta",
+    Option = "Option",
+    Shift = "Shift"
+}
+export declare enum FunctionKeys {
     F1 = "F1",
     F2 = "F2",
     F3 = "F3",
@@ -139,241 +179,194 @@ export declare enum FunctionKeysEnum {
     F11 = "F11",
     F12 = "F12"
 }
-export declare enum NavigationKeysEnum {
-    ArrowDown = "ArrowDown",
-    ArrowLeft = "ArrowLeft",
-    ArrowRight = "ArrowRight",
-    ArrowUp = "ArrowUp",
-    End = "End",
-    Home = "Home",
-    PageDown = "PageDown",
-    PageUp = "PageUp"
-}
-export declare enum EditingKeysEnum {
-    Backspace = "Backspace",
-    Delete = "Delete",
-    Enter = "Enter",
-    Escape = "Escape",
-    Insert = "Insert",
-    Tab = "Tab"
-}
-export declare enum ModifierKeysEnum {
-    Alt = "Alt",
-    Control = "Control",
-    Meta = "Meta",
-    Option = "Option",
-    Shift = "Shift"
-}
 export declare const SpecialKeysGroup: {
-    readonly Alt: ModifierKeysEnum.Alt;
-    readonly Control: ModifierKeysEnum.Control;
-    readonly Meta: ModifierKeysEnum.Meta;
-    readonly Option: ModifierKeysEnum.Option;
-    readonly Shift: ModifierKeysEnum.Shift;
-    readonly Backspace: EditingKeysEnum.Backspace;
-    readonly Delete: EditingKeysEnum.Delete;
-    readonly Enter: EditingKeysEnum.Enter;
-    readonly Escape: EditingKeysEnum.Escape;
-    readonly Insert: EditingKeysEnum.Insert;
-    readonly Tab: EditingKeysEnum.Tab;
-    readonly ArrowDown: NavigationKeysEnum.ArrowDown;
-    readonly ArrowLeft: NavigationKeysEnum.ArrowLeft;
-    readonly ArrowRight: NavigationKeysEnum.ArrowRight;
-    readonly ArrowUp: NavigationKeysEnum.ArrowUp;
-    readonly End: NavigationKeysEnum.End;
-    readonly Home: NavigationKeysEnum.Home;
-    readonly PageDown: NavigationKeysEnum.PageDown;
-    readonly PageUp: NavigationKeysEnum.PageUp;
-    readonly F1: FunctionKeysEnum.F1;
-    readonly F2: FunctionKeysEnum.F2;
-    readonly F3: FunctionKeysEnum.F3;
-    readonly F4: FunctionKeysEnum.F4;
-    readonly F5: FunctionKeysEnum.F5;
-    readonly F6: FunctionKeysEnum.F6;
-    readonly F7: FunctionKeysEnum.F7;
-    readonly F8: FunctionKeysEnum.F8;
-    readonly F9: FunctionKeysEnum.F9;
-    readonly F10: FunctionKeysEnum.F10;
-    readonly F11: FunctionKeysEnum.F11;
-    readonly F12: FunctionKeysEnum.F12;
-    readonly CapsLock: LockKeysEnum.CapsLock;
-    readonly NumLock: LockKeysEnum.NumLock;
-    readonly ScrollLock: LockKeysEnum.ScrollLock;
-    readonly AudioVolumeDown: MultimediaKeysEnum.AudioVolumeDown;
-    readonly AudioVolumeMute: MultimediaKeysEnum.AudioVolumeMute;
-    readonly AudioVolumeUp: MultimediaKeysEnum.AudioVolumeUp;
-    readonly MediaPlayPause: MultimediaKeysEnum.MediaPlayPause;
-    readonly MediaStop: MultimediaKeysEnum.MediaStop;
-    readonly MediaTrackNext: MultimediaKeysEnum.MediaTrackNext;
-    readonly MediaTrackPrevious: MultimediaKeysEnum.MediaTrackPrevious;
-    readonly Space: WhiteSpaceKeysEnum.Space;
-    readonly Ampersand: SpecialCharacterKeysEnum.Ampersand;
-    readonly Asterisk: SpecialCharacterKeysEnum.Asterisk;
-    readonly At: SpecialCharacterKeysEnum.At;
-    readonly Backquote: SpecialCharacterKeysEnum.Backquote;
-    readonly Backslash: SpecialCharacterKeysEnum.Backslash;
-    readonly BracketLeft: SpecialCharacterKeysEnum.BracketLeft;
-    readonly BracketRight: SpecialCharacterKeysEnum.BracketRight;
-    readonly Caret: SpecialCharacterKeysEnum.Caret;
-    readonly Colon: SpecialCharacterKeysEnum.Colon;
-    readonly Comma: SpecialCharacterKeysEnum.Comma;
-    readonly CurlyLeft: SpecialCharacterKeysEnum.CurlyLeft;
-    readonly CurlyRight: SpecialCharacterKeysEnum.CurlyRight;
-    readonly Dollar: SpecialCharacterKeysEnum.Dollar;
-    readonly Equal: SpecialCharacterKeysEnum.Equal;
-    readonly Exclamation: SpecialCharacterKeysEnum.Exclamation;
-    readonly GreaterThan: SpecialCharacterKeysEnum.GreaterThan;
-    readonly Hash: SpecialCharacterKeysEnum.Hash;
-    readonly LessThan: SpecialCharacterKeysEnum.LessThan;
-    readonly ParenLeft: SpecialCharacterKeysEnum.ParenLeft;
-    readonly ParenRight: SpecialCharacterKeysEnum.ParenRight;
-    readonly Percent: SpecialCharacterKeysEnum.Percent;
-    readonly Pipe: SpecialCharacterKeysEnum.Pipe;
-    readonly Period: SpecialCharacterKeysEnum.Period;
-    readonly Plus: SpecialCharacterKeysEnum.Plus;
-    readonly QuestionMark: SpecialCharacterKeysEnum.QuestionMark;
-    readonly Quote: SpecialCharacterKeysEnum.Quote;
-    readonly Semicolon: SpecialCharacterKeysEnum.Semicolon;
-    readonly Slash: SpecialCharacterKeysEnum.Slash;
-    readonly Subtract: SpecialCharacterKeysEnum.Subtract;
-    readonly Tilde: SpecialCharacterKeysEnum.Tilde;
-    readonly Underscore: SpecialCharacterKeysEnum.Underscore;
+    readonly Alt: Modifier.Alt;
+    readonly Control: Modifier.Control;
+    readonly Meta: Modifier.Meta;
+    readonly Option: Modifier.Option;
+    readonly Shift: Modifier.Shift;
+    readonly Backspace: Editing.Backspace;
+    readonly Delete: Editing.Delete;
+    readonly Enter: Editing.Enter;
+    readonly Escape: Editing.Escape;
+    readonly Insert: Editing.Insert;
+    readonly Tab: Editing.Tab;
+    readonly ArrowDown: Navigation.ArrowDown;
+    readonly ArrowLeft: Navigation.ArrowLeft;
+    readonly ArrowRight: Navigation.ArrowRight;
+    readonly ArrowUp: Navigation.ArrowUp;
+    readonly End: Navigation.End;
+    readonly Home: Navigation.Home;
+    readonly PageDown: Navigation.PageDown;
+    readonly PageUp: Navigation.PageUp;
+    readonly prototype: Function;
+    readonly CapsLock: Lock.CapsLock;
+    readonly NumLock: Lock.NumLock;
+    readonly ScrollLock: Lock.ScrollLock;
+    readonly AudioVolumeDown: Multimedia.AudioVolumeDown;
+    readonly AudioVolumeMute: Multimedia.AudioVolumeMute;
+    readonly AudioVolumeUp: Multimedia.AudioVolumeUp;
+    readonly MediaPlayPause: Multimedia.MediaPlayPause;
+    readonly MediaStop: Multimedia.MediaStop;
+    readonly MediaTrackNext: Multimedia.MediaTrackNext;
+    readonly MediaTrackPrevious: Multimedia.MediaTrackPrevious;
+    readonly Space: WhiteSpace.Space;
+    readonly Ampersand: SpecialCharacter.Ampersand;
+    readonly Asterisk: SpecialCharacter.Asterisk;
+    readonly At: SpecialCharacter.At;
+    readonly Backquote: SpecialCharacter.Backquote;
+    readonly Backslash: SpecialCharacter.Backslash;
+    readonly BracketLeft: SpecialCharacter.BracketLeft;
+    readonly BracketRight: SpecialCharacter.BracketRight;
+    readonly Caret: SpecialCharacter.Caret;
+    readonly Colon: SpecialCharacter.Colon;
+    readonly Comma: SpecialCharacter.Comma;
+    readonly CurlyLeft: SpecialCharacter.CurlyLeft;
+    readonly CurlyRight: SpecialCharacter.CurlyRight;
+    readonly Dollar: SpecialCharacter.Dollar;
+    readonly Equal: SpecialCharacter.Equal;
+    readonly Exclamation: SpecialCharacter.Exclamation;
+    readonly GreaterThan: SpecialCharacter.GreaterThan;
+    readonly Hash: SpecialCharacter.Hash;
+    readonly LessThan: SpecialCharacter.LessThan;
+    readonly ParenLeft: SpecialCharacter.ParenLeft;
+    readonly ParenRight: SpecialCharacter.ParenRight;
+    readonly Percent: SpecialCharacter.Percent;
+    readonly Pipe: SpecialCharacter.Pipe;
+    readonly Period: SpecialCharacter.Period;
+    readonly Plus: SpecialCharacter.Plus;
+    readonly QuestionMark: SpecialCharacter.QuestionMark;
+    readonly Quote: SpecialCharacter.Quote;
+    readonly Semicolon: SpecialCharacter.Semicolon;
+    readonly Slash: SpecialCharacter.Slash;
+    readonly Subtract: SpecialCharacter.Subtract;
+    readonly Tilde: SpecialCharacter.Tilde;
+    readonly Underscore: SpecialCharacter.Underscore;
 };
 export declare const AllKeysGroup: {
-    readonly Alt: ModifierKeysEnum.Alt;
-    readonly Control: ModifierKeysEnum.Control;
-    readonly Meta: ModifierKeysEnum.Meta;
-    readonly Option: ModifierKeysEnum.Option;
-    readonly Shift: ModifierKeysEnum.Shift;
-    readonly Backspace: EditingKeysEnum.Backspace;
-    readonly Delete: EditingKeysEnum.Delete;
-    readonly Enter: EditingKeysEnum.Enter;
-    readonly Escape: EditingKeysEnum.Escape;
-    readonly Insert: EditingKeysEnum.Insert;
-    readonly Tab: EditingKeysEnum.Tab;
-    readonly ArrowDown: NavigationKeysEnum.ArrowDown;
-    readonly ArrowLeft: NavigationKeysEnum.ArrowLeft;
-    readonly ArrowRight: NavigationKeysEnum.ArrowRight;
-    readonly ArrowUp: NavigationKeysEnum.ArrowUp;
-    readonly End: NavigationKeysEnum.End;
-    readonly Home: NavigationKeysEnum.Home;
-    readonly PageDown: NavigationKeysEnum.PageDown;
-    readonly PageUp: NavigationKeysEnum.PageUp;
-    readonly F1: FunctionKeysEnum.F1;
-    readonly F2: FunctionKeysEnum.F2;
-    readonly F3: FunctionKeysEnum.F3;
-    readonly F4: FunctionKeysEnum.F4;
-    readonly F5: FunctionKeysEnum.F5;
-    readonly F6: FunctionKeysEnum.F6;
-    readonly F7: FunctionKeysEnum.F7;
-    readonly F8: FunctionKeysEnum.F8;
-    readonly F9: FunctionKeysEnum.F9;
-    readonly F10: FunctionKeysEnum.F10;
-    readonly F11: FunctionKeysEnum.F11;
-    readonly F12: FunctionKeysEnum.F12;
-    readonly CapsLock: LockKeysEnum.CapsLock;
-    readonly NumLock: LockKeysEnum.NumLock;
-    readonly ScrollLock: LockKeysEnum.ScrollLock;
-    readonly AudioVolumeDown: MultimediaKeysEnum.AudioVolumeDown;
-    readonly AudioVolumeMute: MultimediaKeysEnum.AudioVolumeMute;
-    readonly AudioVolumeUp: MultimediaKeysEnum.AudioVolumeUp;
-    readonly MediaPlayPause: MultimediaKeysEnum.MediaPlayPause;
-    readonly MediaStop: MultimediaKeysEnum.MediaStop;
-    readonly MediaTrackNext: MultimediaKeysEnum.MediaTrackNext;
-    readonly MediaTrackPrevious: MultimediaKeysEnum.MediaTrackPrevious;
-    readonly Space: WhiteSpaceKeysEnum.Space;
-    readonly Ampersand: SpecialCharacterKeysEnum.Ampersand;
-    readonly Asterisk: SpecialCharacterKeysEnum.Asterisk;
-    readonly At: SpecialCharacterKeysEnum.At;
-    readonly Backquote: SpecialCharacterKeysEnum.Backquote;
-    readonly Backslash: SpecialCharacterKeysEnum.Backslash;
-    readonly BracketLeft: SpecialCharacterKeysEnum.BracketLeft;
-    readonly BracketRight: SpecialCharacterKeysEnum.BracketRight;
-    readonly Caret: SpecialCharacterKeysEnum.Caret;
-    readonly Colon: SpecialCharacterKeysEnum.Colon;
-    readonly Comma: SpecialCharacterKeysEnum.Comma;
-    readonly CurlyLeft: SpecialCharacterKeysEnum.CurlyLeft;
-    readonly CurlyRight: SpecialCharacterKeysEnum.CurlyRight;
-    readonly Dollar: SpecialCharacterKeysEnum.Dollar;
-    readonly Equal: SpecialCharacterKeysEnum.Equal;
-    readonly Exclamation: SpecialCharacterKeysEnum.Exclamation;
-    readonly GreaterThan: SpecialCharacterKeysEnum.GreaterThan;
-    readonly Hash: SpecialCharacterKeysEnum.Hash;
-    readonly LessThan: SpecialCharacterKeysEnum.LessThan;
-    readonly ParenLeft: SpecialCharacterKeysEnum.ParenLeft;
-    readonly ParenRight: SpecialCharacterKeysEnum.ParenRight;
-    readonly Percent: SpecialCharacterKeysEnum.Percent;
-    readonly Pipe: SpecialCharacterKeysEnum.Pipe;
-    readonly Period: SpecialCharacterKeysEnum.Period;
-    readonly Plus: SpecialCharacterKeysEnum.Plus;
-    readonly QuestionMark: SpecialCharacterKeysEnum.QuestionMark;
-    readonly Quote: SpecialCharacterKeysEnum.Quote;
-    readonly Semicolon: SpecialCharacterKeysEnum.Semicolon;
-    readonly Slash: SpecialCharacterKeysEnum.Slash;
-    readonly Subtract: SpecialCharacterKeysEnum.Subtract;
-    readonly Tilde: SpecialCharacterKeysEnum.Tilde;
-    readonly Underscore: SpecialCharacterKeysEnum.Underscore;
-    readonly A: LetterKeysEnum.A;
-    readonly B: LetterKeysEnum.B;
-    readonly C: LetterKeysEnum.C;
-    readonly D: LetterKeysEnum.D;
-    readonly E: LetterKeysEnum.E;
-    readonly F: LetterKeysEnum.F;
-    readonly G: LetterKeysEnum.G;
-    readonly H: LetterKeysEnum.H;
-    readonly I: LetterKeysEnum.I;
-    readonly J: LetterKeysEnum.J;
-    readonly K: LetterKeysEnum.K;
-    readonly L: LetterKeysEnum.L;
-    readonly M: LetterKeysEnum.M;
-    readonly N: LetterKeysEnum.N;
-    readonly O: LetterKeysEnum.O;
-    readonly P: LetterKeysEnum.P;
-    readonly Q: LetterKeysEnum.Q;
-    readonly R: LetterKeysEnum.R;
-    readonly S: LetterKeysEnum.S;
-    readonly T: LetterKeysEnum.T;
-    readonly U: LetterKeysEnum.U;
-    readonly V: LetterKeysEnum.V;
-    readonly W: LetterKeysEnum.W;
-    readonly X: LetterKeysEnum.X;
-    readonly Y: LetterKeysEnum.Y;
-    readonly Z: LetterKeysEnum.Z;
-    readonly a: LetterKeysEnum.a;
-    readonly b: LetterKeysEnum.b;
-    readonly c: LetterKeysEnum.c;
-    readonly d: LetterKeysEnum.d;
-    readonly e: LetterKeysEnum.e;
-    readonly f: LetterKeysEnum.f;
-    readonly g: LetterKeysEnum.g;
-    readonly h: LetterKeysEnum.h;
-    readonly i: LetterKeysEnum.i;
-    readonly j: LetterKeysEnum.j;
-    readonly k: LetterKeysEnum.k;
-    readonly l: LetterKeysEnum.l;
-    readonly m: LetterKeysEnum.m;
-    readonly n: LetterKeysEnum.n;
-    readonly o: LetterKeysEnum.o;
-    readonly p: LetterKeysEnum.p;
-    readonly q: LetterKeysEnum.q;
-    readonly r: LetterKeysEnum.r;
-    readonly s: LetterKeysEnum.s;
-    readonly t: LetterKeysEnum.t;
-    readonly u: LetterKeysEnum.u;
-    readonly v: LetterKeysEnum.v;
-    readonly w: LetterKeysEnum.w;
-    readonly x: LetterKeysEnum.x;
-    readonly y: LetterKeysEnum.y;
-    readonly z: LetterKeysEnum.z;
-    readonly Zero: NumberKeysEnum.Zero;
-    readonly One: NumberKeysEnum.One;
-    readonly Two: NumberKeysEnum.Two;
-    readonly Three: NumberKeysEnum.Three;
-    readonly Four: NumberKeysEnum.Four;
-    readonly Five: NumberKeysEnum.Five;
-    readonly Six: NumberKeysEnum.Six;
-    readonly Seven: NumberKeysEnum.Seven;
-    readonly Eight: NumberKeysEnum.Eight;
-    readonly Nine: NumberKeysEnum.Nine;
+    readonly Alt: Modifier.Alt;
+    readonly Control: Modifier.Control;
+    readonly Meta: Modifier.Meta;
+    readonly Option: Modifier.Option;
+    readonly Shift: Modifier.Shift;
+    readonly Backspace: Editing.Backspace;
+    readonly Delete: Editing.Delete;
+    readonly Enter: Editing.Enter;
+    readonly Escape: Editing.Escape;
+    readonly Insert: Editing.Insert;
+    readonly Tab: Editing.Tab;
+    readonly ArrowDown: Navigation.ArrowDown;
+    readonly ArrowLeft: Navigation.ArrowLeft;
+    readonly ArrowRight: Navigation.ArrowRight;
+    readonly ArrowUp: Navigation.ArrowUp;
+    readonly End: Navigation.End;
+    readonly Home: Navigation.Home;
+    readonly PageDown: Navigation.PageDown;
+    readonly PageUp: Navigation.PageUp;
+    readonly prototype: Function;
+    readonly CapsLock: Lock.CapsLock;
+    readonly NumLock: Lock.NumLock;
+    readonly ScrollLock: Lock.ScrollLock;
+    readonly AudioVolumeDown: Multimedia.AudioVolumeDown;
+    readonly AudioVolumeMute: Multimedia.AudioVolumeMute;
+    readonly AudioVolumeUp: Multimedia.AudioVolumeUp;
+    readonly MediaPlayPause: Multimedia.MediaPlayPause;
+    readonly MediaStop: Multimedia.MediaStop;
+    readonly MediaTrackNext: Multimedia.MediaTrackNext;
+    readonly MediaTrackPrevious: Multimedia.MediaTrackPrevious;
+    readonly Space: WhiteSpace.Space;
+    readonly Ampersand: SpecialCharacter.Ampersand;
+    readonly Asterisk: SpecialCharacter.Asterisk;
+    readonly At: SpecialCharacter.At;
+    readonly Backquote: SpecialCharacter.Backquote;
+    readonly Backslash: SpecialCharacter.Backslash;
+    readonly BracketLeft: SpecialCharacter.BracketLeft;
+    readonly BracketRight: SpecialCharacter.BracketRight;
+    readonly Caret: SpecialCharacter.Caret;
+    readonly Colon: SpecialCharacter.Colon;
+    readonly Comma: SpecialCharacter.Comma;
+    readonly CurlyLeft: SpecialCharacter.CurlyLeft;
+    readonly CurlyRight: SpecialCharacter.CurlyRight;
+    readonly Dollar: SpecialCharacter.Dollar;
+    readonly Equal: SpecialCharacter.Equal;
+    readonly Exclamation: SpecialCharacter.Exclamation;
+    readonly GreaterThan: SpecialCharacter.GreaterThan;
+    readonly Hash: SpecialCharacter.Hash;
+    readonly LessThan: SpecialCharacter.LessThan;
+    readonly ParenLeft: SpecialCharacter.ParenLeft;
+    readonly ParenRight: SpecialCharacter.ParenRight;
+    readonly Percent: SpecialCharacter.Percent;
+    readonly Pipe: SpecialCharacter.Pipe;
+    readonly Period: SpecialCharacter.Period;
+    readonly Plus: SpecialCharacter.Plus;
+    readonly QuestionMark: SpecialCharacter.QuestionMark;
+    readonly Quote: SpecialCharacter.Quote;
+    readonly Semicolon: SpecialCharacter.Semicolon;
+    readonly Slash: SpecialCharacter.Slash;
+    readonly Subtract: SpecialCharacter.Subtract;
+    readonly Tilde: SpecialCharacter.Tilde;
+    readonly Underscore: SpecialCharacter.Underscore;
+    readonly A: Letter.A;
+    readonly B: Letter.B;
+    readonly C: Letter.C;
+    readonly D: Letter.D;
+    readonly E: Letter.E;
+    readonly F: Letter.F;
+    readonly G: Letter.G;
+    readonly H: Letter.H;
+    readonly I: Letter.I;
+    readonly J: Letter.J;
+    readonly K: Letter.K;
+    readonly L: Letter.L;
+    readonly M: Letter.M;
+    readonly N: Letter.N;
+    readonly O: Letter.O;
+    readonly P: Letter.P;
+    readonly Q: Letter.Q;
+    readonly R: Letter.R;
+    readonly S: Letter.S;
+    readonly T: Letter.T;
+    readonly U: Letter.U;
+    readonly V: Letter.V;
+    readonly W: Letter.W;
+    readonly X: Letter.X;
+    readonly Y: Letter.Y;
+    readonly Z: Letter.Z;
+    readonly a: Letter.a;
+    readonly b: Letter.b;
+    readonly c: Letter.c;
+    readonly d: Letter.d;
+    readonly e: Letter.e;
+    readonly f: Letter.f;
+    readonly g: Letter.g;
+    readonly h: Letter.h;
+    readonly i: Letter.i;
+    readonly j: Letter.j;
+    readonly k: Letter.k;
+    readonly l: Letter.l;
+    readonly m: Letter.m;
+    readonly n: Letter.n;
+    readonly o: Letter.o;
+    readonly p: Letter.p;
+    readonly q: Letter.q;
+    readonly r: Letter.r;
+    readonly s: Letter.s;
+    readonly t: Letter.t;
+    readonly u: Letter.u;
+    readonly v: Letter.v;
+    readonly w: Letter.w;
+    readonly x: Letter.x;
+    readonly y: Letter.y;
+    readonly z: Letter.z;
+    readonly Zero: Number.Zero;
+    readonly One: Number.One;
+    readonly Two: Number.Two;
+    readonly Three: Number.Three;
+    readonly Four: Number.Four;
+    readonly Five: Number.Five;
+    readonly Six: Number.Six;
+    readonly Seven: Number.Seven;
+    readonly Eight: Number.Eight;
+    readonly Nine: Number.Nine;
 };
 //# sourceMappingURL=types.d.ts.map
