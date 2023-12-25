@@ -15,7 +15,7 @@
     "prepublish": "tsc",
     "coverage": "nyc --include 'lib/**' npm test",
     "coverage:report": "npx nyc report --reporter=html --report-dir ./docs/coverage_report",
-    "add:library:to:ghpages": "npm run prepublish & cp -r lib ./docs/lib",
+    "add:library:to:ghpages": "npm run prepublish && cp -r ./lib ./docs",
     "generate:docs": "npm run coverage:report && npm run add:library:to:ghpages & typedoc --entryPointStrategy expand --out docs/generated_docs ./src",
     "run-examples-server": "parcel docs/index.html",
     "npm:pack": "npm run prepublish && npm pack && npm link keyskey",

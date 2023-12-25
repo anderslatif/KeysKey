@@ -78,7 +78,13 @@ const result = KeysKey.And(event, KeysKey.Number.One, KeysKey.Modifier.Shift);
 console.log(result) // [ '1', "Shift" ]
 ```
 
-Example of a special key combo:
+Example of a special key combo. Always give the event as the first arguments. 
+
+ KeysKey.SpecialCombos. returns an array of possible keys which can be passed to other KeysKey methods as the second arguments as:
+ 
+ - KeysKey constants
+ - Individual string constants 
+ - single/nested array or multiple parametric key combinations
 
 ```javascript
 import KeysKey from "keyskey";
@@ -100,7 +106,7 @@ console.log(result); // [ '8' ]
 
 ## Full Documentation
 
-[Generated Docs from JS Docstrings contain all the types.](https://anderslatif.github.io/KeysKey/generated_docs/)
+[LINK TO TYPES: Generated Docs from JS Docstrings contain all the types.](https://anderslatif.github.io/KeysKey/generated_docs/)
 
 ### Library Methods
 
