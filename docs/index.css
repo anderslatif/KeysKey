@@ -24,6 +24,7 @@ h1 {
 .grid-item {
     background-color: #818181;
     text-align: center;
+    padding-top: 10px;
     border: 1px solid #ccc; 
     transition: background-color 0.3s; /* Smooth transition for background color change */
 }
