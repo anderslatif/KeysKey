@@ -1,10 +1,10 @@
-<img src="https://github.com/anderslatif/KeysKey/blob/main/KeysKeyLogo.png" alt="logo" width="200"/>
-
 # KeysKey
 
 [![NPM Version][npm-version-image]][npm-url]
 [![NPM Install Size][npm-install-size-image]][npm-install-size-url]
 [![Test CI](https://github.com/anderslatif/KeysKey/actions/workflows/test.yml/badge.svg)](https://github.com/anderslatif/KeysKey/actions/workflows/test.yml)
+
+<img src="https://raw.githubusercontent.com/anderslatif/KeysKey/main/KeysKeyLogo.png" alt="logo" width="200"/>
 
 Provides the key to your keys.
 
